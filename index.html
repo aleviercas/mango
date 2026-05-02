@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Mango · AI Financial Decision Engine</title>
+  <meta name="description" content="Mango is a global cross-border payments intelligence layer powered by AI — for individuals, SMEs, and institutions.">
+  <!-- Preconnect + Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #050B0F;
+      font-family: 'Inter', sans-serif;
+      color: #E6EDF3;
+      scroll-behavior: smooth;
+      line-height: 1.5;
+    }
+
+    /* gradient & glassmorphism utilities */
+    .bg-gradient-dark {
+      background: radial-gradient(ellipse at 20% 30%, rgba(0,240,104,0.12), rgba(0,0,0,0.92) 70%);
+    }
+    .glass-card {
+      background: rgba(12, 20, 28, 0.65);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 240, 104, 0.2);
+      border-radius: 2rem;
+      transition: all 0.25s ease;
+    }
+    .glass-card:hover {
+      border-color: rgba(0, 240, 104, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 35px -12px rgba(0, 240, 104, 0.2);
+    }
+    .btn-primary {
+      background: linear-gradient(105deg, #00F068, #00A849);
+      border: none;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      color: #050B0F;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,240,104,0.3);
+    }
+    .btn-primary:hover {
+      transform: scale(1.02);
+      background: linear-gradient(105deg, #1CFF7C, #00C453);
+      box-shadow: 0 8px 20px rgba(0,240,104,0.4);
+      color: #000;
+    }
+    .btn-outline {
+      border: 1px solid #00F068;
+      background: transparent;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .btn-outline:hover {
+      background: rgba(0, 240, 104, 0.1);
+      border-color: #00F068;
+      color: #00F068;
+    }
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #FFFFFF, #B0FFD0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+    .badge-green {
+      background: rgba(0, 240, 104, 0.15);
+      color: #00F068;
+      border-radius: 100px;
+      padding: 0.25rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      width: fit-content;
+    }
+    .grid-bento {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8rem;
+    }
+    /* hero floating accent */
+    .hero-bg-shape {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .hero-shape {
+      position: absolute;
+      background: radial-gradient(circle, rgba(0,240,104,0.2), transparent 70%);
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      top: -150px;
+      right: -150px;
+      filter: blur(70px);
+    }
+    .hero-shape2 {
+      bottom: -200px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(146,93,238,0.25), transparent);
+    }
+    /* custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0F1920;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #00F068;
+      border-radius: 10px;
+    }
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 2rem;
+      }
+      .glass-card {
+        border-radius: 1.5rem;
+      }
+    }
+    /* animated stat */
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(145deg, #fff, #9effc7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    footer a {
+      text-decoration: none;
+      color: #A0B3C9;
+      transition: 0.2s;
+    }
+    footer a:hover {
+      color: #00F068;
+    }
+  </style>
+</head>
+<body class="bg-gradient-dark">
+
+<!-- header navigation -->
+<nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-[#050B0F]/80 border-b border-white/5" style="padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+  <div class="flex items-center gap-2">
+    <span style="font-weight: 800; font-size: 1.8rem; letter-spacing: -1px; background: linear-gradient(135deg,#00F068,#ADFFD4); -webkit-background-clip: text; background-clip: text; color: transparent;">MANGO</span>
+    <span class="badge-green" style="margin-left: 0.5rem;">AI · DECISION ENGINE</span>
+  </div>
+  <div class="flex gap-6 text-sm font-medium max-md:hidden">
+    <a href="#ai-engine" class="hover:text-[#00F068] transition">AI engine</a>
+    <a href="#market" class="hover:text-[#00F068] transition">Market</a>
+    <a href="#business-model" class="hover:text-[#00F068] transition">Business model</a>
+    <a href="#revenue" class="hover:text-[#00F068] transition">Projections</a>
+    <a href="#roadmap" class="hover:text-[#00F068] transition">Roadmap</a>
+  </div>
+  <div class="flex gap-2">
+    <button class="btn-outline text-sm max-md:hidden" style="padding: 0.5rem 1.2rem;">Request access</button>
+    <button class="btn-primary text-sm">Compare now →</button>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section style="min-height: 90vh; display: flex; align-items: center; padding: 6rem 5% 4rem; position: relative;">
+  <div class="hero-bg-shape">
+    <div class="hero-shape"></div>
+    <div class="hero-shape hero-shape2"></div>
+  </div>
+  <div style="max-width: 1200px; margin: 0 auto; width: 100%;">
+    <div class="badge-green mb-4" data-aos="fade-up">⚡ AI-Powered cross-border intelligence</div>
+    <h1 style="font-size: clamp(2.5rem,6vw,4.5rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em;">Compare, optimise & execute<br> 
+    <span style="background: linear-gradient(115deg,#00F068,#EEF5FF); -webkit-background-clip: text; background-clip: text; color: transparent;">global payments with AI.</span></h1>
+    <p style="font-size: 1.2rem; max-width: 600px; margin: 1.5rem 0 2rem; opacity: 0.8;">Mango is the neutral AI decision engine that turns fragmented FX data into instant, actionable intelligence — for individuals, SMEs, and institutions.</p>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <button class="btn-primary">Start comparing →</button>
+      <button class="btn-outline">Watch AI demo <i class="fa-regular fa-circle-play ml-1"></i></button>
+    </div>
+    <div style="display: flex; gap: 2rem; margin-top: 3rem; flex-wrap: wrap;">
+      <div><span class="stat-number">$250B+</span><br><span style="font-size: 0.8rem;">global FX fees / year</span></div>
+      <div><span class="stat-number">0</span><br><span style="font-size: 0.8rem;">fund custody → zero friction</span></div>
+      <div><span class="stat-number">860B</span><br><span style="font-size: 0.8rem;">remittance market size</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI ENGINE — The Differentiator -->
+<section id="ai-engine" style="padding: 5rem 5%; background: rgba(0,0,0,0.5);">
+  <div style="max-width: 1300px; margin: 0 auto;">
+    <div class="text-center mb-12">
+      <span class="badge-green">⚙️ core intelligence</span>
+      <h2 class="section-title mt-2">AI engine — not a chatbot,<br>your financial co-pilot</h2>
+      <p style="max-width: 700px; margin: 1rem auto 0; opacity: 0.7;">6 proprietary AI layers that turn raw provider data into personalised decisions.</p>
+    </div>
+    <div class="grid-bento">
+      <div class="glass-card p-6">
+        <i class="fa-solid fa-route text-3xl text-[#00F068] mb-3"></i>
+        <h3 class="text-xl font-bold mt-2">Best Route Optimizer</h3>
+        <p class="text-sm opacity-80 mt-2">“Best option right now: Wise. Recipient gets $1,942 in 2h — lowest total cost”.</p>
+      </div>
+      <div class="glass-card p-6">
+        <i class="fa-regular fa-clock text-3xl text-[#00F068] mb-3"></i>
+        <h3 class="text-xl font-bold mt-2">Contextual Decision Engine</h3>
+        <p class="text-sm opacity-80">Urgency, savings mode, compliance → personalised ranking, not a table.</p>
+      </div>
+      <div class="glass-card p-6">
+        <i class="fa-solid fa-chart-line text-3xl text-[#00F068] mb-3"></i>
+        <h3 class="text-xl font-bold mt-2">FX Timing Predictor</h3>
+        <p class="text-sm opacity-80">“GBP→USD is 1.8% worse than 30-day average — rates improve within 48h”.</p>
+      </div>
+      <div class="glass-card p-6">
+        <i class="fa-regular fa-comment-dots text-3xl text-[#00F068] mb-3"></i>
+        <h3 class="text-xl font-bold mt-2">Conversational Assistant</h3>
+        <p class="text-sm opacity-80">“I want to send €3,000 to Colombia” → 3 ranked options, one-tap execution.</p>
+      </div>
+      <div class="glass-card p-6">
+        <i class="fa-regular fa-eye text-3xl text-[#00F068] mb-3"></i>
+        <h3 class="text-xl font-bold mt-2">Hidden Fee Detector</h3>
+        <p class="text-sm opacity-80">Detects FX markups, intermediary fees, misleading “0 fee” claims.</p>
+      </div>
+      <div class="glass-card p-6">
+        <i class="fa-solid fa-building-columns text-3xl text-[#00F068] mb-3"></i>
+        <h3 class="text-xl font-bold mt-2">B2B Treasury Optimizer</h3>
+        <p class="text-sm opacity-80">Split routing, corridor-level intelligence and reliability scoring.</p>
+      </div>
+    </div>
+    <div class="mt-10 glass-card p-5 text-center max-w-3xl mx-auto">
+      <p class="italic">“Split your $50K payroll: Wise for EU corridors (cheaper), Payoneer for LATAM (faster).”</p>
+      <div class="border-t border-[#00F068]/30 my-3"></div>
+      <span class="text-xs tracking-wide">real‑time AI decision — live example</span>
+    </div>
+  </div>
+</section>
+
+<!-- Technical AI Roadmap -->
+<section style="padding: 5rem 5%;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <span class="badge-green">🔄 progressive intelligence</span>
+    <h2 class="section-title mt-2">AI technical roadmap</h2>
+    <p class="mb-8 opacity-70">From rule‑based scoring to proprietary ML — each phase funds the next</p>
+    <div class="grid md:grid-cols-4 gap-4">
+      <div class="glass-card p-5"><span class="font-bold text-[#00F068]">Phase 1 (Weeks 1‑4)</span><br>Sort by total cost + plain‑language explanation · Rule‑based + LLM prompt</div>
+      <div class="glass-card p-5"><span class="font-bold text-[#00F068]">Phase 2 (Month 2‑4)</span><br>Contextual ranking · FX timing signals · Conversational UI</div>
+      <div class="glass-card p-5"><span class="font-bold text-[#00F068]">Phase 3 (Month 6‑12)</span><br>Dynamic ML ranking · Fee transparency detector · B2B split routing</div>
+      <div class="glass-card p-5"><span class="font-bold text-[#00F068]">Phase 4 (Year 2+)</span><br>Full AI decision engine · predictive FX intelligence · Auto‑routing</div>
+    </div>
+  </div>
+</section>
+
+<!-- Target Market & Segments -->
+<section id="market" style="padding: 5rem 5%; background: radial-gradient(ellipse at 70% 20%, rgba(0,240,104,0.05), transparent);">
+  <div style="max-width: 1300px; margin: 0 auto;">
+    <div class="flex flex-wrap justify-between items-end">
+      <div><span class="badge-green">🎯 segments</span><h2 class="section-title">Where Mango delivers value</h2></div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 mt-10">
+      <div class="glass-card p-6"><i class="fa-solid fa-user-group text-2xl text-[#00F068]"></i><h3 class="font-bold text-xl mt-2">Retail / Expats</h3><p class="text-sm">Sending $200–$10K abroad · find cheapest route in <10 sec · CPA model</p></div>
+      <div class="glass-card p-6"><i class="fa-solid fa-chart-simple text-2xl text-[#00F068]"></i><h3 class="font-bold text-xl mt-2">SMEs & Freelancers</h3><p class="text-sm">Cut FX costs 1-3% via AI routing · lead generation + affiliate</p></div>
+      <div class="glass-card p-6"><i class="fa-regular fa-building text-2xl text-[#00F068]"></i><h3 class="font-bold text-xl mt-2">Fintechs & Neobanks</h3><p class="text-sm">White‑label AI comparison engine · SaaS / API licensing</p></div>
+      <div class="glass-card p-6"><i class="fa-solid fa-landmark text-2xl text-[#00F068]"></i><h3 class="font-bold text-xl mt-2">Banks & PSPs</h3><p class="text-sm">Corporate FX desks · qualified institutional leads · premium lead gen</p></div>
+      <div class="glass-card p-6"><i class="fa-solid fa-chart-line text-2xl text-[#00F068]"></i><h3 class="font-bold text-xl mt-2">FX Brokers</h3><p class="text-sm">Demand generation + display · rev share</p></div>
+      <div class="glass-card p-6"><i class="fa-solid fa-chart-pie text-2xl text-[#00F068]"></i><h3 class="font-bold text-xl mt-2">Enterprise Treasury</h3><p class="text-sm">AI multi‑provider FX benchmark · SaaS + Consulting</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Business Model & Revenue Phases -->
+<section id="business-model" style="padding: 5rem 5%;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <span class="badge-green">💰 monetisation moat</span>
+    <h2 class="section-title">Revenue phases</h2>
+    <div class="grid md:grid-cols-4 gap-4 mt-8">
+      <div class="glass-card p-5 border-l-4 border-[#00F068]"><span class="font-black text-[#00F068]">Phase 1</span><br>Content+SEO+Ads<br>→ $500‑$3k/mo</div>
+      <div class="glass-card p-5"><span class="font-black text-[#00F068]">Phase 2</span><br>Affiliate scale + AI activation → $3k‑$15k/mo</div>
+      <div class="glass-card p-5"><span class="font-black text-[#00F068]">Phase 3</span><br>B2B lead gen + AI SaaS pilot → $10k‑$50k/mo</div>
+      <div class="glass-card p-5"><span class="font-black text-[#00F068]">Phase 4</span><br>Financial AI infrastructure (APIs) → $50k‑$200k+/mo</div>
+    </div>
+  </div>
+</section>
+
+<!-- Revenue Projections + Chart -->
+<section id="revenue" style="padding: 5rem 5%; background: radial-gradient(ellipse at 30% 80%, rgba(0,168,73,0.1), transparent);">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <span class="badge-green">📈 financial snapshot</span>
+    <h2 class="section-title">Revenue projections</h2>
+    <div class="glass-card overflow-x-auto p-1">
+      <table class="w-full text-left text-sm">
+        <thead class="border-b border-[#00F068]/30"><tr><th class="p-4">Period</th><th>Primary source</th><th>Monthly revenue</th><th>Cumulative</th></tr></thead>
+        <tbody>
+          <tr class="border-b border-white/5"><td class="p-4">Months 1-2</td><td>AdSense + Ads traffic</td><td>$300 – $800</td><td>$0.6k‑$1.6k</td></tr>
+          <tr class="border-b border-white/5"><td class="p-4">Month 3</td><td>AdSense + first aff.</td><td>$800 – $2k</td><td>$1.4k‑$3.6k</td></tr>
+          <tr class="border-b border-white/5"><td class="p-4">Months 4-6</td><td>Affiliate scale</td><td>$2k – $6k</td><td>$5k‑$20k</td></tr>
+          <tr class="border-b border-white/5"><td class="p-4">Months 7-12</td><td>Affiliate + B2B leads</td><td>$6k – $20k</td><td>$40k‑$100k</td></tr>
+          <tr class="border-b border-white/5"><td class="p-4">Months 13-18</td><td>B2B leads + SaaS</td><td>$15k – $40k</td><td>$100k‑$300k</td></tr>
+          <tr><td class="p-4">Year 3+</td><td>AI API licensing</td><td>$50k – $200k+</td><td>$1M‑$5M+</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 mt-10">
+      <div class="glass-card p-6"><i class="fa-regular fa-chart-line text-[#00F068] text-xl"></i><h3 class="font-bold mt-2">Media plan · Google Ads ready</h3><p>Search + Display with $500‑$2k/mo budget, target high‑intent FX keywords (ROAS 1.5x–3x)</p></div>
+      <div class="glass-card p-6"><i class="fa-regular fa-chart-line text-[#00F068] text-xl"></i><h3 class="font-bold mt-2">Immediate traffic</h3><p>Expected Month‑1: $300‑$800 (AdSense+affiliate) → Month‑2: $1.5k‑$3k with AI tool engagement</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 90-Day MVP Roadmap  -->
+<section id="roadmap" style="padding: 5rem 5%;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <span class="badge-green">🗓️ execution sprints</span>
+    <h2 class="section-title">90‑day MVP roadmap</h2>
+    <div class="grid md:grid-cols-3 gap-5 mt-6">
+      <div class="glass-card p-4"><span class="text-[#00F068] font-mono">Week 1</span><p class="font-semibold">Domain + site + AdSense & affiliates</p><span class="text-xs opacity-70">Enables revenue</span></div>
+      <div class="glass-card p-4"><span class="text-[#00F068] font-mono">Week 2</span><p class="font-semibold">Google Ads live (3 campaigns)</p><span class="text-xs opacity-70">Immediate traffic</span></div>
+      <div class="glass-card p-4"><span class="text-[#00F068] font-mono">Week 3-4</span><p class="font-semibold">MVP AI route optimizer (rule‑based+LLM)</p><span class="text-xs opacity-70">AI differentiation</span></div>
+      <div class="glass-card p-4"><span class="text-[#00F068] font-mono">Week 5-6</span><p class="font-semibold">B2B lead capture pages</p><span class="text-xs opacity-70">B2B pipeline</span></div>
+      <div class="glass-card p-4"><span class="text-[#00F068] font-mono">Week 7-8</span><p class="font-semibold">Email newsletter (AI FX digest)</p><span class="text-xs opacity-70">Retention + sponsors</span></div>
+      <div class="glass-card p-4"><span class="text-[#00F068] font-mono">Week 11-12</span><p class="font-semibold">First B2B partner deal signed</p><span class="text-xs opacity-70">B2B revenue opens</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Go to Market + Competitive Landscape (compact) -->
+<section style="padding: 4rem 5%;" class="border-t border-white/5">
+  <div style="max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between;">
+    <div class="flex-1 min-w-[260px]">
+      <span class="badge-green">📊 SEO-led GTM</span>
+      <h3 class="text-2xl font-bold mt-2">Primary channel: organic search</h3>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><i class="fa-regular fa-circle-check text-[#00F068]"></i> "cheapest way to send money abroad" – vol 22k</li>
+        <li><i class="fa-regular fa-circle-check text-[#00F068]"></i> "Wise vs Remitly" – 14k high intent</li>
+        <li><i class="fa-regular fa-circle-check text-[#00F068]"></i> "best FX provider for SMEs" – CPC $7.80</li>
+        <li><i class="fa-regular fa-circle-check text-[#00F068]"></i> LinkedIn B2B + affiliate co-marketing + viral FX calculator</li>
+      </ul>
+    </div>
+    <div class="flex-1 min-w-[260px]">
+      <span class="badge-green">⚡ competitive moat</span>
+      <h3 class="text-2xl font-bold mt-2">Mango vs. incumbents</h3>
+      <p class="mt-2 text-sm">Wise/Remitly: they ARE the product → Mango: neutral aggregator + AI.<br>Bloomberg FX: expensive → accessible freemium AI.<br>The only neutral global B2C+B2B AI decision layer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Vision & Exit -->
+<footer style="padding: 4rem 5%; background: #02070A; border-top: 1px solid rgba(0,240,104,0.3);">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
+    <div><h5 class="font-bold text-lg">MANGO</h5><p class="text-xs opacity-60 mt-2">Global cross-border payments · AI financial decision engine</p></div>
+    <div><h6 class="font-semibold">AI Platform</h6><ul class="text-sm space-y-1 mt-2 opacity-70"><li>Best Route Optimizer</li><li>Contextual AI</li><li>FX Intelligence</li><li>Treasury optimiser</li></ul></div>
+    <div><h6 class="font-semibold">For Business</h6><ul class="text-sm space-y-1 mt-2 opacity-70"><li>SMEs & corporations</li><li>B2B lead & API</li><li>White‑label AI</li></ul></div>
+    <div><h6 class="font-semibold">Long term vision</h6><p class="text-sm opacity-70">Bloomberg for international payments — accessible to everybody. Exit scenarios: strategic acquisition (Wise/Stripe/Payoneer) or scaling to $10M+ ARR profitable bootstrap.</p></div>
+  </div>
+  <div class="text-center text-xs opacity-50 pt-12 border-t border-white/10 mt-8">© 2025 Mango · No fund custody, pure intelligence layer. AI decision engine patent‑pending strategy.</div>
+</footer>
+
+<!-- tiny scroll interaction -->
+</body>
+</html>
