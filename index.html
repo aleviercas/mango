@@ -1,373 +1,1529 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Mango · AI Financial Decision Engine</title>
-  <meta name="description" content="Mango is a global cross-border payments intelligence layer powered by AI — for individuals, SMEs, and institutions.">
-  <!-- Preconnect + Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700;14..32,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mango · Global FX AI Decision Engine</title>
+<meta name="description" content="Mango is the global AI financial decision engine for international payments — neutral, intelligent, and fast."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
+<style>
+/* ─── RESET ─────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+img,svg{display:block}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
 
-    body {
-      background: #050B0F;
-      font-family: 'Inter', sans-serif;
-      color: #E6EDF3;
-      scroll-behavior: smooth;
-      line-height: 1.5;
-    }
+/* ─── TOKENS ─────────────────────────────────────────────────── */
+:root{
+  /* fluoro palette — Lemon/Pomelo energy */
+  --neon:#FFE040;        /* primary fluoro yellow */
+  --neon-hot:#FF8C00;    /* hot orange */
+  --neon-lime:#AAFF47;   /* lime accent */
+  --neon-cyan:#00F5D4;   /* cyan accent */
+  --neon-pink:#FF4ECD;   /* pop accent */
 
-    /* gradient & glassmorphism utilities */
-    .bg-gradient-dark {
-      background: radial-gradient(ellipse at 20% 30%, rgba(0,240,104,0.12), rgba(0,0,0,0.92) 70%);
-    }
-    .glass-card {
-      background: rgba(12, 20, 28, 0.65);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(0, 240, 104, 0.2);
-      border-radius: 2rem;
-      transition: all 0.25s ease;
-    }
-    .glass-card:hover {
-      border-color: rgba(0, 240, 104, 0.5);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 35px -12px rgba(0, 240, 104, 0.2);
-    }
-    .btn-primary {
-      background: linear-gradient(105deg, #00F068, #00A849);
-      border: none;
-      padding: 0.8rem 1.8rem;
-      border-radius: 60px;
-      font-weight: 600;
-      color: #050B0F;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(0,240,104,0.3);
-    }
-    .btn-primary:hover {
-      transform: scale(1.02);
-      background: linear-gradient(105deg, #1CFF7C, #00C453);
-      box-shadow: 0 8px 20px rgba(0,240,104,0.4);
-      color: #000;
-    }
-    .btn-outline {
-      border: 1px solid #00F068;
-      background: transparent;
-      padding: 0.8rem 1.8rem;
-      border-radius: 60px;
-      font-weight: 500;
-      transition: 0.2s;
-    }
-    .btn-outline:hover {
-      background: rgba(0, 240, 104, 0.1);
-      border-color: #00F068;
-      color: #00F068;
-    }
-    .section-title {
-      font-size: 2.8rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #FFFFFF, #B0FFD0);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 1rem;
-    }
-    .badge-green {
-      background: rgba(0, 240, 104, 0.15);
-      color: #00F068;
-      border-radius: 100px;
-      padding: 0.25rem 1rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      width: fit-content;
-    }
-    .grid-bento {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.8rem;
-    }
-    /* hero floating accent */
-    .hero-bg-shape {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      z-index: -1;
-    }
-    .hero-shape {
-      position: absolute;
-      background: radial-gradient(circle, rgba(0,240,104,0.2), transparent 70%);
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      top: -150px;
-      right: -150px;
-      filter: blur(70px);
-    }
-    .hero-shape2 {
-      bottom: -200px;
-      left: -100px;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(146,93,238,0.25), transparent);
-    }
-    /* custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #0F1920;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #00F068;
-      border-radius: 10px;
-    }
-    @media (max-width: 768px) {
-      .section-title {
-        font-size: 2rem;
-      }
-      .glass-card {
-        border-radius: 1.5rem;
-      }
-    }
-    /* animated stat */
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 800;
-      background: linear-gradient(145deg, #fff, #9effc7);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    footer a {
-      text-decoration: none;
-      color: #A0B3C9;
-      transition: 0.2s;
-    }
-    footer a:hover {
-      color: #00F068;
-    }
-  </style>
+  /* backgrounds */
+  --bg:#07060A;
+  --bg-1:#0D0B13;
+  --bg-2:#131120;
+  --bg-card:rgba(19,17,32,0.85);
+  --bg-card-alt:rgba(255,224,64,0.04);
+
+  /* text */
+  --t-bright:#FAFAF8;
+  --t-mid:#C5C0D4;
+  --t-dim:#6E6A85;
+
+  /* borders */
+  --b-subtle:rgba(255,255,255,0.07);
+  --b-neon:rgba(255,224,64,0.3);
+
+  /* type scale */
+  --display:clamp(2.8rem,7vw,5.6rem);
+  --h2:clamp(2rem,4.5vw,3.4rem);
+  --h3:1.25rem;
+  --body:0.9375rem;
+  --small:0.8125rem;
+
+  /* spacing */
+  --section-py:7rem;
+  --gutter:min(5%,80px);
+  --radius:1.25rem;
+  --radius-lg:2rem;
+}
+
+/* ─── GLOBAL ─────────────────────────────────────────────────── */
+html{scroll-behavior:smooth}
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--bg);
+  color:var(--t-bright);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* noise grain overlay */
+body::after{
+  content:'';position:fixed;inset:0;z-index:999;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity:.45;mix-blend-mode:overlay;
+}
+
+/* ─── TYPOGRAPHY ─────────────────────────────────────────────── */
+.font-display{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-0.03em;line-height:1.05}
+.t-neon{color:var(--neon)}
+.t-orange{color:var(--neon-hot)}
+.t-lime{color:var(--neon-lime)}
+.t-cyan{color:var(--neon-cyan)}
+.t-mid{color:var(--t-mid)}
+.t-dim{color:var(--t-dim)}
+
+/* gradient text */
+.grad-neon{
+  background:linear-gradient(120deg,var(--neon),var(--neon-hot));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.grad-cool{
+  background:linear-gradient(120deg,var(--neon-cyan),var(--neon-lime));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* ─── LAYOUT ─────────────────────────────────────────────────── */
+.container{max-width:1240px;margin:0 auto;padding:0 var(--gutter);width:100%}
+.section{padding:var(--section-py) var(--gutter)}
+
+/* ─── BADGE ──────────────────────────────────────────────────── */
+.badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(255,224,64,0.1);
+  border:1px solid rgba(255,224,64,0.25);
+  color:var(--neon);
+  font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:.35rem 1rem;border-radius:100px;
+  white-space:nowrap;
+}
+.badge-cyan{background:rgba(0,245,212,0.1);border-color:rgba(0,245,212,0.25);color:var(--neon-cyan)}
+.badge-orange{background:rgba(255,140,0,0.12);border-color:rgba(255,140,0,0.3);color:var(--neon-hot)}
+.badge-lime{background:rgba(170,255,71,0.1);border-color:rgba(170,255,71,0.25);color:var(--neon-lime)}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ─── BUTTONS ────────────────────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;
+  padding:.85rem 2rem;border-radius:100px;
+  transition:all .22s ease;white-space:nowrap;letter-spacing:-.01em;
+}
+.btn-neon{
+  background:var(--neon);color:#07060A;
+  box-shadow:0 0 28px rgba(255,224,64,.35),0 4px 12px rgba(0,0,0,.4);
+}
+.btn-neon:hover{background:#FFEC6E;box-shadow:0 0 48px rgba(255,224,64,.55),0 8px 20px rgba(0,0,0,.4);transform:translateY(-2px)}
+.btn-outline{
+  background:transparent;color:var(--t-bright);
+  border:1px solid var(--b-subtle);
+}
+.btn-outline:hover{border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,.04);transform:translateY(-2px)}
+
+/* ─── CARDS ──────────────────────────────────────────────────── */
+.card{
+  background:var(--bg-card);
+  border:1px solid var(--b-subtle);
+  border-radius:var(--radius);
+  backdrop-filter:blur(16px);
+  overflow:hidden; /* prevent text spill */
+}
+.card:hover{border-color:rgba(255,224,64,0.2);transform:translateY(-3px);transition:all .25s ease}
+.card-neon-top{border-top:2px solid var(--neon)}
+.card-orange-top{border-top:2px solid var(--neon-hot)}
+.card-lime-top{border-top:2px solid var(--neon-lime)}
+.card-cyan-top{border-top:2px solid var(--neon-cyan)}
+
+/* ─── NAV ────────────────────────────────────────────────────── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(7,6,10,.8);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--b-subtle);
+}
+.nav-inner{
+  max-width:1240px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem var(--gutter);gap:1.5rem;
+}
+.nav-logo{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
+.logo-mark{
+  width:34px;height:34px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--neon),var(--neon-hot));
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+}
+.logo-name{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.35rem;
+  letter-spacing:-.04em;color:var(--t-bright);
+}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{
+  font-size:.875rem;font-weight:500;color:var(--t-dim);
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--t-bright)}
+.nav-actions{display:flex;align-items:center;gap:.75rem;flex-shrink:0}
+
+/* ─── HERO ───────────────────────────────────────────────────── */
+.hero{
+  min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding-top:80px;
+  position:relative;overflow:hidden;
+}
+/* ambient orbs */
+.orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
+.orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(255,224,64,.12) 0%,transparent 65%);top:-200px;right:-200px}
+.orb-2{width:500px;height:500px;background:radial-gradient(circle,rgba(255,140,0,.1) 0%,transparent 65%);bottom:-100px;left:-100px}
+.orb-3{width:350px;height:350px;background:radial-gradient(circle,rgba(0,245,212,.07) 0%,transparent 65%);top:40%;left:35%}
+
+.hero-inner{
+  position:relative;z-index:1;
+  max-width:1240px;margin:0 auto;
+  padding:6rem var(--gutter) 5rem;
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;
+}
+.hero-eyebrow{margin-bottom:1.5rem}
+.hero-title{font-family:'Syne',sans-serif;font-weight:800;font-size:var(--display);letter-spacing:-.04em;line-height:1.02;margin-bottom:1.5rem}
+.hero-sub{font-size:1.1rem;color:var(--t-mid);line-height:1.7;max-width:480px;margin-bottom:2.5rem;font-weight:300}
+.hero-ctas{display:flex;gap:.875rem;flex-wrap:wrap;margin-bottom:3.5rem}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.hero-stat{
+  background:rgba(255,255,255,.03);border:1px solid var(--b-subtle);
+  border-radius:1rem;padding:1.1rem 1.2rem;
+}
+.hero-stat-val{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.75rem;
+  letter-spacing:-.04em;
+  background:linear-gradient(120deg,var(--neon),var(--neon-hot));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-stat-label{font-size:.75rem;color:var(--t-dim);margin-top:.2rem;line-height:1.4}
+
+/* ─── DEMO CARD ──────────────────────────────────────────────── */
+.demo-card{
+  background:var(--bg-1);border:1px solid var(--b-subtle);
+  border-radius:1.5rem;overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,224,64,.05);
+}
+.demo-topbar{
+  padding:.875rem 1.25rem;background:rgba(255,255,255,.03);
+  border-bottom:1px solid var(--b-subtle);
+  display:flex;align-items:center;gap:.6rem;
+}
+.demo-dot{width:10px;height:10px;border-radius:50%}
+.demo-topbar-label{color:var(--t-dim);font-size:.72rem;margin-left:.5rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.demo-body{padding:1.5rem}
+.demo-prompt{
+  background:rgba(255,224,64,.06);border:1px solid rgba(255,224,64,.15);
+  border-radius:.875rem;padding:.875rem 1.1rem;margin-bottom:1.25rem;
+  font-size:.85rem;color:var(--t-mid);font-style:italic;line-height:1.5;
+}
+.demo-prompt strong{color:var(--t-bright);font-style:normal}
+.demo-results{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
+.result-item{
+  background:var(--bg-2);border:1px solid var(--b-subtle);
+  border-radius:1rem;padding:1rem;
+}
+.result-item.winner{border-color:rgba(255,224,64,.35);background:rgba(255,224,64,.04)}
+.result-rank{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:.6rem}
+.result-item.winner .result-rank{color:var(--neon)}
+.result-provider{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:var(--t-bright);margin-bottom:.75rem}
+.result-row{display:flex;justify-content:space-between;font-size:.75rem;color:var(--t-dim);margin-bottom:.3rem}
+.result-row span:last-child{color:var(--t-mid)}
+.result-total{margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--b-subtle);display:flex;justify-content:space-between;font-size:.8rem}
+.result-total span:last-child{font-family:'Syne',sans-serif;font-weight:700;color:var(--neon)}
+.demo-insight{
+  background:rgba(0,245,212,.06);border:1px solid rgba(0,245,212,.18);
+  border-radius:.875rem;padding:.875rem 1rem;
+  font-size:.78rem;color:var(--neon-cyan);line-height:1.5;
+  display:flex;gap:.6rem;
+}
+
+/* ─── TICKER ─────────────────────────────────────────────────── */
+.ticker{
+  border-top:1px solid var(--b-subtle);border-bottom:1px solid var(--b-subtle);
+  background:var(--bg-1);
+  padding:.9rem 0;overflow:hidden;white-space:nowrap;
+}
+.ticker-track{display:inline-flex;animation:ticker 30s linear infinite}
+.ticker-item{
+  display:inline-flex;align-items:center;gap:1.5rem;
+  padding:0 2.5rem;
+  font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--t-dim);
+}
+.ticker-item span{color:var(--neon);font-size:.65rem}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─── SECTION HEADERS ────────────────────────────────────────── */
+.section-header{margin-bottom:3.5rem}
+.section-header .badge{margin-bottom:1rem}
+.section-header h2{font-family:'Syne',sans-serif;font-weight:800;font-size:var(--h2);letter-spacing:-.03em;line-height:1.1;margin-bottom:1rem}
+.section-header p{font-size:1rem;color:var(--t-mid);max-width:560px;line-height:1.7;font-weight:300}
+
+/* ─── AI ENGINE ──────────────────────────────────────────────── */
+.ai-section{background:var(--bg-1)}
+.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.ai-cards{display:grid;gap:.875rem;margin-top:2.5rem}
+.ai-card{
+  display:flex;align-items:flex-start;gap:1rem;
+  padding:1.25rem;
+  background:var(--bg-2);border:1px solid var(--b-subtle);
+  border-radius:1rem;transition:all .25s;
+}
+.ai-card:hover{border-color:rgba(255,224,64,.25);transform:translateX(4px)}
+.ai-card-icon{
+  width:40px;height:40px;border-radius:.75rem;flex-shrink:0;
+  background:rgba(255,224,64,.1);border:1px solid rgba(255,224,64,.15);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+}
+.ai-card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:var(--t-bright);margin-bottom:.25rem}
+.ai-card-desc{font-size:.8rem;color:var(--t-mid);line-height:1.5}
+.ai-card-ex{font-size:.72rem;color:var(--t-dim);font-style:italic;margin-top:.35rem}
+
+/* AI visual panel */
+.ai-panel{
+  background:var(--bg-2);border:1px solid rgba(0,245,212,.12);
+  border-radius:1.5rem;padding:1.75rem;
+  box-shadow:0 0 60px rgba(0,245,212,.05);
+}
+.ai-panel-label{
+  font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--neon-cyan);margin-bottom:1.25rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+.ai-panel-label::before{content:'';width:16px;height:1px;background:var(--neon-cyan)}
+.route-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 1rem;border-radius:.875rem;margin-bottom:.6rem;
+  background:var(--bg-1);border:1px solid var(--b-subtle);
+  transition:all .2s;
+}
+.route-row.top{background:rgba(255,224,64,.05);border-color:rgba(255,224,64,.3)}
+.route-left{display:flex;align-items:center;gap:.75rem}
+.route-avatar{
+  width:30px;height:30px;border-radius:.5rem;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:.75rem;
+}
+.route-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.875rem;color:var(--t-bright)}
+.route-speed{font-size:.7rem;color:var(--t-dim)}
+.route-right{display:flex;align-items:center;gap:.75rem}
+.route-amount{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem}
+.route-row.top .route-amount{color:var(--neon)}
+.pill{
+  background:var(--neon);color:#07060A;
+  font-size:.62rem;font-weight:800;padding:.2rem .6rem;border-radius:100px;
+  text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;
+}
+.ai-insight-box{
+  margin-top:1rem;background:rgba(0,245,212,.06);border:1px solid rgba(0,245,212,.15);
+  border-radius:.875rem;padding:.875rem 1rem;
+  font-size:.78rem;color:var(--neon-cyan);line-height:1.5;
+}
+
+/* ─── HOW IT WORKS ───────────────────────────────────────────── */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.step{
+  padding:2rem 1.75rem;
+  background:var(--bg-card);border:1px solid var(--b-subtle);
+  border-radius:var(--radius);position:relative;overflow:hidden;
+  transition:all .25s;
+}
+.step:hover{border-color:rgba(255,224,64,.2);transform:translateY(-3px)}
+.step-num{
+  position:absolute;top:1rem;right:1.25rem;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:5rem;
+  color:rgba(255,255,255,.03);line-height:1;pointer-events:none;letter-spacing:-.04em;
+}
+.step-icon{
+  width:48px;height:48px;border-radius:1rem;margin-bottom:1.25rem;
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+  background:linear-gradient(135deg,rgba(255,224,64,.15),rgba(255,140,0,.1));
+  border:1px solid rgba(255,224,64,.15);
+}
+.step-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--t-bright);margin-bottom:.6rem}
+.step-desc{font-size:.84rem;color:var(--t-mid);line-height:1.6}
+
+/* ─── TARGET MARKET ──────────────────────────────────────────── */
+.market-section{background:var(--bg-1)}
+.market-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
+.market-card{
+  padding:1.5rem 1.375rem;
+  background:var(--bg-2);border:1px solid var(--b-subtle);
+  border-radius:var(--radius);transition:all .25s;overflow:hidden;
+}
+.market-card:hover{border-color:rgba(255,224,64,.2);transform:translateY(-3px)}
+.market-icon{font-size:1.5rem;margin-bottom:1rem}
+.market-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:var(--t-bright);margin-bottom:.5rem}
+.market-desc{font-size:.8rem;color:var(--t-mid);line-height:1.5}
+.market-model{
+  display:inline-block;margin-top:.75rem;
+  font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
+  color:var(--neon);background:rgba(255,224,64,.1);
+  padding:.2rem .65rem;border-radius:100px;
+}
+
+/* ─── PHASES ─────────────────────────────────────────────────── */
+.phases-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:3rem}
+.phase{
+  padding:1.5rem 1.375rem;
+  border:1px solid var(--b-subtle);border-radius:var(--radius);
+  display:flex;flex-direction:column;gap:.75rem;
+  transition:all .25s;position:relative;overflow:hidden;
+}
+.phase:hover{transform:translateY(-4px)}
+.phase::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.phase-1::before{background:var(--neon)}
+.phase-2::before{background:var(--neon-hot)}
+.phase-3::before{background:var(--neon-lime)}
+.phase-4::before{background:var(--neon-cyan)}
+.phase-tag{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim)}
+.phase-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:var(--t-bright);line-height:1.3}
+.phase-timeline{font-size:.75rem;color:var(--t-dim)}
+.phase-items{display:flex;flex-direction:column;gap:.5rem;flex:1}
+.phase-items li{font-size:.78rem;color:var(--t-mid);padding-left:1rem;position:relative;line-height:1.4}
+.phase-items li::before{content:'→';position:absolute;left:0;color:var(--neon);font-size:.7rem;top:.05rem}
+.phase-rev{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;
+  padding-top:.75rem;border-top:1px solid var(--b-subtle);
+}
+.phase-1 .phase-rev{color:var(--neon)}
+.phase-2 .phase-rev{color:var(--neon-hot)}
+.phase-3 .phase-rev{color:var(--neon-lime)}
+.phase-4 .phase-rev{color:var(--neon-cyan)}
+
+/* ─── REVENUE TABLE ──────────────────────────────────────────── */
+.table-wrap{
+  background:var(--bg-card);border:1px solid var(--b-subtle);
+  border-radius:var(--radius);overflow:hidden;margin-top:2.5rem;
+}
+.rev-table{width:100%;border-collapse:collapse;font-size:.84rem}
+.rev-table th{
+  padding:.9rem 1.25rem;background:rgba(255,255,255,.03);
+  text-align:left;font-family:'Syne',sans-serif;font-weight:700;
+  font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);
+  border-bottom:1px solid var(--b-subtle);
+}
+.rev-table td{
+  padding:.875rem 1.25rem;border-bottom:1px solid var(--b-subtle);
+  color:var(--t-mid);vertical-align:middle;line-height:1.4;
+}
+.rev-table tr:last-child td{border-bottom:none}
+.rev-table tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+.rev-table .td-period{color:var(--t-bright);font-weight:600;white-space:nowrap}
+.rev-table .td-rev{font-family:'Syne',sans-serif;font-weight:700;color:var(--neon);white-space:nowrap}
+
+/* ─── GTM SECTION ────────────────────────────────────────────── */
+.gtm-grid{display:grid;grid-template-columns:3fr 2fr;gap:3rem;align-items:start}
+.kw-list{display:flex;flex-direction:column;gap:.625rem;margin-top:1.5rem}
+.kw-row{
+  display:grid;grid-template-columns:1fr auto auto auto;align-items:center;
+  gap:1rem;padding:.875rem 1.25rem;
+  background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:.875rem;
+}
+.kw-term{font-size:.84rem;color:var(--t-bright);font-weight:500}
+.kw-vol{font-size:.72rem;color:var(--t-dim);white-space:nowrap}
+.kw-intent{
+  font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  padding:.2rem .55rem;border-radius:100px;white-space:nowrap;
+}
+.intent-high{background:rgba(255,224,64,.12);color:var(--neon)}
+.intent-vhigh{background:rgba(170,255,71,.12);color:var(--neon-lime)}
+.kw-cpc{font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;color:var(--neon-hot);white-space:nowrap}
+
+.channels{display:flex;flex-direction:column;gap:.875rem;margin-top:1.5rem}
+.channel{
+  padding:1.1rem 1.25rem;
+  background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:.875rem;
+}
+.channel-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.875rem;color:var(--t-bright);margin-bottom:.3rem}
+.channel-desc{font-size:.78rem;color:var(--t-mid);line-height:1.5}
+
+/* ─── GOOGLE ADS ─────────────────────────────────────────────── */
+.ads-section{background:var(--bg-1)}
+.ads-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem}
+.week-block{display:flex;flex-direction:column;gap:.75rem}
+.week-label{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:.8rem;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--neon);
+  margin-bottom:.25rem;
+}
+.week-item{
+  display:flex;align-items:flex-start;gap:.7rem;
+  font-size:.82rem;color:var(--t-mid);line-height:1.5;padding-left:.25rem;
+}
+.week-item::before{content:'→';color:var(--neon-hot);flex-shrink:0;font-size:.75rem;margin-top:.15rem}
+.ads-table{
+  width:100%;border-collapse:collapse;font-size:.78rem;margin-top:1.5rem;
+}
+.ads-table th{
+  padding:.7rem 1rem;background:rgba(255,255,255,.03);
+  text-align:left;font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;
+  color:var(--t-dim);border-bottom:1px solid var(--b-subtle);
+}
+.ads-table td{
+  padding:.75rem 1rem;border-bottom:1px solid var(--b-subtle);
+  color:var(--t-mid);vertical-align:middle;
+}
+.ads-table tr:last-child td{border-bottom:none}
+.ads-wrap{
+  background:var(--bg-card);border:1px solid var(--b-subtle);border-radius:var(--radius);overflow:hidden;
+}
+.alert-box{
+  background:rgba(255,224,64,.07);border:1px solid rgba(255,224,64,.2);
+  border-radius:1rem;padding:1.1rem 1.25rem;margin-top:1.5rem;
+  font-size:.84rem;color:var(--t-bright);line-height:1.6;
+}
+.alert-box strong{color:var(--neon)}
+
+/* ─── COMPETITIVE ────────────────────────────────────────────── */
+.comp-table{
+  width:100%;border-collapse:collapse;font-size:.82rem;margin-top:2.5rem;
+}
+.comp-table th{
+  padding:.875rem 1.25rem;background:rgba(255,255,255,.03);
+  text-align:left;font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--t-dim);border-bottom:1px solid var(--b-subtle);
+}
+.comp-table td{
+  padding:.875rem 1.25rem;border-bottom:1px solid var(--b-subtle);
+  color:var(--t-mid);vertical-align:middle;line-height:1.4;
+}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+.comp-table .td-mango{color:var(--neon-lime);font-weight:600}
+
+/* ─── RISKS ──────────────────────────────────────────────────── */
+.risks-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;margin-top:2.5rem}
+.risk-card{
+  padding:1.375rem 1.25rem;
+  background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:var(--radius);
+  transition:all .25s;
+}
+.risk-card:hover{border-color:rgba(255,224,64,.15)}
+.risk-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;gap:.75rem;flex-wrap:wrap}
+.risk-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.875rem;color:var(--t-bright)}
+.severity{
+  font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  padding:.2rem .65rem;border-radius:100px;white-space:nowrap;flex-shrink:0;
+}
+.sev-high{background:rgba(255,78,78,.15);color:#FF4E4E}
+.sev-med{background:rgba(255,224,64,.1);color:var(--neon)}
+.sev-low{background:rgba(170,255,71,.1);color:var(--neon-lime)}
+.risk-mit{font-size:.78rem;color:var(--t-mid);line-height:1.5}
+
+/* ─── ROADMAP ────────────────────────────────────────────────── */
+.roadmap-section{background:var(--bg-1)}
+.timeline{display:flex;flex-direction:column;gap:0;margin-top:3rem}
+.tl-group{padding-left:2.5rem;position:relative;margin-bottom:2.5rem}
+.tl-group::before{
+  content:'';position:absolute;left:.625rem;top:1.2rem;bottom:-2.5rem;
+  width:1px;background:var(--b-subtle);
+}
+.tl-group:last-child::before{display:none}
+.tl-dot{
+  position:absolute;left:0;top:.85rem;
+  width:1.25rem;height:1.25rem;border-radius:50%;
+  background:var(--neon);border:2px solid var(--bg-1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.55rem;font-weight:800;color:#07060A;flex-shrink:0;
+}
+.tl-week{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:.78rem;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--neon);margin-bottom:.5rem;
+}
+.tl-items{display:flex;flex-direction:column;gap:.5rem}
+.tl-item{
+  padding:.75rem 1.1rem;
+  background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:.75rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+.tl-item-text{font-size:.82rem;color:var(--t-mid);line-height:1.4;flex:1}
+.tl-impact{
+  font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--neon-lime);background:rgba(170,255,71,.08);
+  padding:.2rem .6rem;border-radius:100px;white-space:nowrap;flex-shrink:0;
+}
+
+/* ─── VISION ─────────────────────────────────────────────────── */
+.vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;align-items:start}
+.evo-table{width:100%;border-collapse:collapse}
+.evo-table th{
+  padding:.75rem 1rem;background:rgba(255,255,255,.03);
+  text-align:left;font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--t-dim);border-bottom:1px solid var(--b-subtle);
+}
+.evo-table td{
+  padding:.875rem 1rem;border-bottom:1px solid var(--b-subtle);
+  font-size:.8rem;color:var(--t-mid);vertical-align:top;line-height:1.5;
+}
+.evo-table tr:last-child td{border-bottom:none}
+.evo-phase{color:var(--t-bright);font-weight:600}
+.exits{display:flex;flex-direction:column;gap:1rem}
+.exit-card{
+  padding:1.375rem;background:var(--bg-2);border:1px solid var(--b-subtle);
+  border-radius:var(--radius);
+}
+.exit-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:var(--t-bright);margin-bottom:.4rem}
+.exit-desc{font-size:.78rem;color:var(--t-mid);line-height:1.5}
+
+/* ─── CTA FINAL ──────────────────────────────────────────────── */
+.cta-section{
+  padding:var(--section-py) var(--gutter);text-align:center;
+  position:relative;overflow:hidden;background:var(--bg);
+}
+.cta-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:400px;
+  background:radial-gradient(ellipse,rgba(255,224,64,.12) 0%,transparent 65%);
+  pointer-events:none;
+}
+.cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.cta-inner h2{font-family:'Syne',sans-serif;font-weight:800;font-size:var(--h2);letter-spacing:-.03em;margin-bottom:1.25rem}
+.cta-inner p{font-size:1rem;color:var(--t-mid);line-height:1.7;margin-bottom:2.5rem;font-weight:300}
+
+/* ─── FOOTER ─────────────────────────────────────────────────── */
+.footer{
+  border-top:1px solid var(--b-subtle);
+  background:var(--bg-1);
+  padding:3.5rem var(--gutter) 2rem;
+}
+.footer-grid{
+  max-width:1240px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;
+}
+.footer-brand-name{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;
+  display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem;
+}
+.footer-desc{font-size:.8rem;color:var(--t-dim);line-height:1.6;max-width:280px}
+.footer-col-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-bright);margin-bottom:1rem}
+.footer-links{display:flex;flex-direction:column;gap:.5rem}
+.footer-links a{font-size:.8rem;color:var(--t-dim);transition:color .2s}
+.footer-links a:hover{color:var(--neon)}
+.footer-bottom{
+  max-width:1240px;margin:0 auto;
+  padding-top:1.5rem;border-top:1px solid var(--b-subtle);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+}
+.footer-copy{font-size:.75rem;color:var(--t-dim)}
+.footer-legal{display:flex;gap:1.5rem}
+.footer-legal a{font-size:.75rem;color:var(--t-dim);transition:color .2s}
+.footer-legal a:hover{color:var(--t-mid)}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:3rem}
+  .demo-card{max-width:540px}
+  .ai-grid{grid-template-columns:1fr}
+  .gtm-grid{grid-template-columns:1fr}
+  .vision-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  :root{--section-py:4.5rem}
+  .nav-links{display:none}
+  .hero-stats{grid-template-columns:repeat(3,1fr)}
+  .steps{grid-template-columns:1fr}
+  .market-grid{grid-template-columns:1fr 1fr}
+  .phases-grid{grid-template-columns:1fr 1fr}
+  .ads-grid{grid-template-columns:1fr}
+  .risks-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+}
+@media(max-width:540px){
+  .hero-ctas{flex-direction:column}
+  .hero-stats{grid-template-columns:1fr}
+  .demo-results{grid-template-columns:1fr}
+  .market-grid{grid-template-columns:1fr}
+  .phases-grid{grid-template-columns:1fr}
+  .kw-row{grid-template-columns:1fr 1fr;gap:.5rem}
+  .kw-intent,.kw-cpc{display:none}
+}
+
+/* ─── ANIMATIONS ─────────────────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.animate{animation:fadeUp .6s ease both}
+.delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}.delay-4{animation-delay:.4s}
+</style>
 </head>
-<body class="bg-gradient-dark">
+<body>
 
-<!-- header navigation -->
-<nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-[#050B0F]/80 border-b border-white/5" style="padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-  <div class="flex items-center gap-2">
-    <span style="font-weight: 800; font-size: 1.8rem; letter-spacing: -1px; background: linear-gradient(135deg,#00F068,#ADFFD4); -webkit-background-clip: text; background-clip: text; color: transparent;">MANGO</span>
-    <span class="badge-green" style="margin-left: 0.5rem;">AI · DECISION ENGINE</span>
-  </div>
-  <div class="flex gap-6 text-sm font-medium max-md:hidden">
-    <a href="#ai-engine" class="hover:text-[#00F068] transition">AI engine</a>
-    <a href="#market" class="hover:text-[#00F068] transition">Market</a>
-    <a href="#business-model" class="hover:text-[#00F068] transition">Business model</a>
-    <a href="#revenue" class="hover:text-[#00F068] transition">Projections</a>
-    <a href="#roadmap" class="hover:text-[#00F068] transition">Roadmap</a>
-  </div>
-  <div class="flex gap-2">
-    <button class="btn-outline text-sm max-md:hidden" style="padding: 0.5rem 1.2rem;">Request access</button>
-    <button class="btn-primary text-sm">Compare now →</button>
+<!-- ─── NAV ──────────────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="logo-mark">🥭</div>
+      <span class="logo-name">Mango</span>
+      <div class="badge" style="margin-left:.5rem;font-size:.65rem;padding:.25rem .75rem">AI Engine</div>
+    </div>
+    <div class="nav-links">
+      <a href="#ai">AI Engine</a>
+      <a href="#market">Market</a>
+      <a href="#revenue">Revenue</a>
+      <a href="#gtm">GTM</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#vision">Vision</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-outline" style="padding:.65rem 1.4rem;font-size:.8rem;display:none" id="apiBtn">API access</button>
+      <button class="btn btn-neon" style="padding:.65rem 1.4rem;font-size:.82rem">Compare now →</button>
+    </div>
   </div>
 </nav>
 
-<!-- HERO SECTION -->
-<section style="min-height: 90vh; display: flex; align-items: center; padding: 6rem 5% 4rem; position: relative;">
-  <div class="hero-bg-shape">
-    <div class="hero-shape"></div>
-    <div class="hero-shape hero-shape2"></div>
-  </div>
-  <div style="max-width: 1200px; margin: 0 auto; width: 100%;">
-    <div class="badge-green mb-4" data-aos="fade-up">⚡ AI-Powered cross-border intelligence</div>
-    <h1 style="font-size: clamp(2.5rem,6vw,4.5rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em;">Compare, optimise & execute<br> 
-    <span style="background: linear-gradient(115deg,#00F068,#EEF5FF); -webkit-background-clip: text; background-clip: text; color: transparent;">global payments with AI.</span></h1>
-    <p style="font-size: 1.2rem; max-width: 600px; margin: 1.5rem 0 2rem; opacity: 0.8;">Mango is the neutral AI decision engine that turns fragmented FX data into instant, actionable intelligence — for individuals, SMEs, and institutions.</p>
-    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-      <button class="btn-primary">Start comparing →</button>
-      <button class="btn-outline">Watch AI demo <i class="fa-regular fa-circle-play ml-1"></i></button>
-    </div>
-    <div style="display: flex; gap: 2rem; margin-top: 3rem; flex-wrap: wrap;">
-      <div><span class="stat-number">$250B+</span><br><span style="font-size: 0.8rem;">global FX fees / year</span></div>
-      <div><span class="stat-number">0</span><br><span style="font-size: 0.8rem;">fund custody → zero friction</span></div>
-      <div><span class="stat-number">860B</span><br><span style="font-size: 0.8rem;">remittance market size</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- AI ENGINE — The Differentiator -->
-<section id="ai-engine" style="padding: 5rem 5%; background: rgba(0,0,0,0.5);">
-  <div style="max-width: 1300px; margin: 0 auto;">
-    <div class="text-center mb-12">
-      <span class="badge-green">⚙️ core intelligence</span>
-      <h2 class="section-title mt-2">AI engine — not a chatbot,<br>your financial co-pilot</h2>
-      <p style="max-width: 700px; margin: 1rem auto 0; opacity: 0.7;">6 proprietary AI layers that turn raw provider data into personalised decisions.</p>
-    </div>
-    <div class="grid-bento">
-      <div class="glass-card p-6">
-        <i class="fa-solid fa-route text-3xl text-[#00F068] mb-3"></i>
-        <h3 class="text-xl font-bold mt-2">Best Route Optimizer</h3>
-        <p class="text-sm opacity-80 mt-2">“Best option right now: Wise. Recipient gets $1,942 in 2h — lowest total cost”.</p>
+<!-- ─── HERO ──────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="hero-inner">
+    <!-- Left: copy -->
+    <div>
+      <div class="hero-eyebrow animate">
+        <span class="badge"><span class="badge-dot"></span>AI-Powered · Launching Now</span>
       </div>
-      <div class="glass-card p-6">
-        <i class="fa-regular fa-clock text-3xl text-[#00F068] mb-3"></i>
-        <h3 class="text-xl font-bold mt-2">Contextual Decision Engine</h3>
-        <p class="text-sm opacity-80">Urgency, savings mode, compliance → personalised ranking, not a table.</p>
+      <h1 class="hero-title animate delay-1">
+        The global FX<br/>
+        <span class="grad-neon">decision engine.</span>
+      </h1>
+      <p class="hero-sub animate delay-2">
+        Neutral AI platform that turns fragmented cross-border payments into one intelligent decision — from retail remittances to corporate treasury. Compare, optimise, execute.
+      </p>
+      <div class="hero-ctas animate delay-3">
+        <button class="btn btn-neon">Compare rates now →</button>
+        <button class="btn btn-outline">Watch AI demo ▶</button>
       </div>
-      <div class="glass-card p-6">
-        <i class="fa-solid fa-chart-line text-3xl text-[#00F068] mb-3"></i>
-        <h3 class="text-xl font-bold mt-2">FX Timing Predictor</h3>
-        <p class="text-sm opacity-80">“GBP→USD is 1.8% worse than 30-day average — rates improve within 48h”.</p>
-      </div>
-      <div class="glass-card p-6">
-        <i class="fa-regular fa-comment-dots text-3xl text-[#00F068] mb-3"></i>
-        <h3 class="text-xl font-bold mt-2">Conversational Assistant</h3>
-        <p class="text-sm opacity-80">“I want to send €3,000 to Colombia” → 3 ranked options, one-tap execution.</p>
-      </div>
-      <div class="glass-card p-6">
-        <i class="fa-regular fa-eye text-3xl text-[#00F068] mb-3"></i>
-        <h3 class="text-xl font-bold mt-2">Hidden Fee Detector</h3>
-        <p class="text-sm opacity-80">Detects FX markups, intermediary fees, misleading “0 fee” claims.</p>
-      </div>
-      <div class="glass-card p-6">
-        <i class="fa-solid fa-building-columns text-3xl text-[#00F068] mb-3"></i>
-        <h3 class="text-xl font-bold mt-2">B2B Treasury Optimizer</h3>
-        <p class="text-sm opacity-80">Split routing, corridor-level intelligence and reliability scoring.</p>
+      <div class="hero-stats animate delay-4">
+        <div class="hero-stat">
+          <div class="hero-stat-val">$250B+</div>
+          <div class="hero-stat-label">Global FX fees paid annually</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-val">2–5%</div>
+          <div class="hero-stat-label">Average hidden FX spread per transfer</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-val">$23T</div>
+          <div class="hero-stat-label">Corporate FX annual volume</div>
+        </div>
       </div>
     </div>
-    <div class="mt-10 glass-card p-5 text-center max-w-3xl mx-auto">
-      <p class="italic">“Split your $50K payroll: Wise for EU corridors (cheaper), Payoneer for LATAM (faster).”</p>
-      <div class="border-t border-[#00F068]/30 my-3"></div>
-      <span class="text-xs tracking-wide">real‑time AI decision — live example</span>
-    </div>
-  </div>
-</section>
-
-<!-- Technical AI Roadmap -->
-<section style="padding: 5rem 5%;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <span class="badge-green">🔄 progressive intelligence</span>
-    <h2 class="section-title mt-2">AI technical roadmap</h2>
-    <p class="mb-8 opacity-70">From rule‑based scoring to proprietary ML — each phase funds the next</p>
-    <div class="grid md:grid-cols-4 gap-4">
-      <div class="glass-card p-5"><span class="font-bold text-[#00F068]">Phase 1 (Weeks 1‑4)</span><br>Sort by total cost + plain‑language explanation · Rule‑based + LLM prompt</div>
-      <div class="glass-card p-5"><span class="font-bold text-[#00F068]">Phase 2 (Month 2‑4)</span><br>Contextual ranking · FX timing signals · Conversational UI</div>
-      <div class="glass-card p-5"><span class="font-bold text-[#00F068]">Phase 3 (Month 6‑12)</span><br>Dynamic ML ranking · Fee transparency detector · B2B split routing</div>
-      <div class="glass-card p-5"><span class="font-bold text-[#00F068]">Phase 4 (Year 2+)</span><br>Full AI decision engine · predictive FX intelligence · Auto‑routing</div>
+    <!-- Right: live demo card -->
+    <div class="animate delay-2">
+      <div class="demo-card">
+        <div class="demo-topbar">
+          <div class="demo-dot" style="background:#FF5F56"></div>
+          <div class="demo-dot" style="background:#FFBD2E"></div>
+          <div class="demo-dot" style="background:#27C93F"></div>
+          <span class="demo-topbar-label">mango.finance — AI Route Optimizer · Live</span>
+        </div>
+        <div class="demo-body">
+          <div class="demo-prompt">
+            🧠 <strong>"Send £1,000 from UK to Mexico"</strong> — finding best route across 200+ providers…
+          </div>
+          <div class="demo-results">
+            <div class="result-item winner">
+              <div class="result-rank">🥇 Best route</div>
+              <div class="result-provider">Wise</div>
+              <div class="result-row"><span>Fee</span><span>£4.12</span></div>
+              <div class="result-row"><span>FX Rate</span><span>23.33</span></div>
+              <div class="result-row"><span>Speed</span><span>⚡ 2 hours</span></div>
+              <div class="result-total"><span>Recipient gets</span><span>MXN $23,150</span></div>
+            </div>
+            <div class="result-item">
+              <div class="result-rank">🥈 Alternative</div>
+              <div class="result-provider">Remitly</div>
+              <div class="result-row"><span>Fee</span><span>£0 promo</span></div>
+              <div class="result-row"><span>FX Rate</span><span>23.04</span></div>
+              <div class="result-row"><span>Speed</span><span>🕐 1 day</span></div>
+              <div class="result-total"><span>Recipient gets</span><span>MXN $23,040</span></div>
+            </div>
+          </div>
+          <div class="demo-insight">
+            <span style="flex-shrink:0">✦</span>
+            <span><strong style="color:var(--neon-cyan)">AI Insight:</strong> Wise's FX spread is 0.3% below its 30-day average today. Acting now saves ~£18 vs waiting. Set a rate alert?</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Target Market & Segments -->
-<section id="market" style="padding: 5rem 5%; background: radial-gradient(ellipse at 70% 20%, rgba(0,240,104,0.05), transparent);">
-  <div style="max-width: 1300px; margin: 0 auto;">
-    <div class="flex flex-wrap justify-between items-end">
-      <div><span class="badge-green">🎯 segments</span><h2 class="section-title">Where Mango delivers value</h2></div>
+<!-- ─── TICKER ─────────────────────────────────────────────────── -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item">Compare rates <span>✦</span></div>
+    <div class="ticker-item">AI route optimizer <span>✦</span></div>
+    <div class="ticker-item">FX intelligence <span>✦</span></div>
+    <div class="ticker-item">Wise vs Remitly <span>✦</span></div>
+    <div class="ticker-item">B2B treasury tools <span>✦</span></div>
+    <div class="ticker-item">Hidden fee detector <span>✦</span></div>
+    <div class="ticker-item">Real-time FX rates <span>✦</span></div>
+    <div class="ticker-item">Send money smarter <span>✦</span></div>
+    <div class="ticker-item">AdSense + affiliate <span>✦</span></div>
+    <div class="ticker-item">Google Ads live <span>✦</span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item">Compare rates <span>✦</span></div>
+    <div class="ticker-item">AI route optimizer <span>✦</span></div>
+    <div class="ticker-item">FX intelligence <span>✦</span></div>
+    <div class="ticker-item">Wise vs Remitly <span>✦</span></div>
+    <div class="ticker-item">B2B treasury tools <span>✦</span></div>
+    <div class="ticker-item">Hidden fee detector <span>✦</span></div>
+    <div class="ticker-item">Real-time FX rates <span>✦</span></div>
+    <div class="ticker-item">Send money smarter <span>✦</span></div>
+    <div class="ticker-item">AdSense + affiliate <span>✦</span></div>
+    <div class="ticker-item">Google Ads live <span>✦</span></div>
+  </div>
+</div>
+
+<!-- ─── HOW IT WORKS ───────────────────────────────────────────── -->
+<section class="section" id="how" style="background:var(--bg)">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge">How it works</div>
+      <h2>Three steps.<br/>Zero confusion.</h2>
+      <p>No forms, no spreadsheets. Tell Mango what you need — the AI does the rest in under 10 seconds.</p>
     </div>
-    <div class="grid md:grid-cols-3 gap-6 mt-10">
-      <div class="glass-card p-6"><i class="fa-solid fa-user-group text-2xl text-[#00F068]"></i><h3 class="font-bold text-xl mt-2">Retail / Expats</h3><p class="text-sm">Sending $200–$10K abroad · find cheapest route in <10 sec · CPA model</p></div>
-      <div class="glass-card p-6"><i class="fa-solid fa-chart-simple text-2xl text-[#00F068]"></i><h3 class="font-bold text-xl mt-2">SMEs & Freelancers</h3><p class="text-sm">Cut FX costs 1-3% via AI routing · lead generation + affiliate</p></div>
-      <div class="glass-card p-6"><i class="fa-regular fa-building text-2xl text-[#00F068]"></i><h3 class="font-bold text-xl mt-2">Fintechs & Neobanks</h3><p class="text-sm">White‑label AI comparison engine · SaaS / API licensing</p></div>
-      <div class="glass-card p-6"><i class="fa-solid fa-landmark text-2xl text-[#00F068]"></i><h3 class="font-bold text-xl mt-2">Banks & PSPs</h3><p class="text-sm">Corporate FX desks · qualified institutional leads · premium lead gen</p></div>
-      <div class="glass-card p-6"><i class="fa-solid fa-chart-line text-2xl text-[#00F068]"></i><h3 class="font-bold text-xl mt-2">FX Brokers</h3><p class="text-sm">Demand generation + display · rev share</p></div>
-      <div class="glass-card p-6"><i class="fa-solid fa-chart-pie text-2xl text-[#00F068]"></i><h3 class="font-bold text-xl mt-2">Enterprise Treasury</h3><p class="text-sm">AI multi‑provider FX benchmark · SaaS + Consulting</p></div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-icon">💬</div>
+        <div class="step-title">Tell us your transfer</div>
+        <p class="step-desc">Type naturally: "Send £1,000 to Mexico" or use the form. Origin, destination, amount, urgency — that's all we need.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-icon">🤖</div>
+        <div class="step-title">AI finds the best route</div>
+        <p class="step-desc">Our engine queries 200+ providers, calculates total cost — fee + FX spread + hidden charges — and ranks by what matters to you.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-icon">⚡</div>
+        <div class="step-title">Execute in one tap</div>
+        <p class="step-desc">Choose your provider and go directly to them. Mango is neutral — we hold no funds, just help you decide smarter and faster.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Business Model & Revenue Phases -->
-<section id="business-model" style="padding: 5rem 5%;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <span class="badge-green">💰 monetisation moat</span>
-    <h2 class="section-title">Revenue phases</h2>
-    <div class="grid md:grid-cols-4 gap-4 mt-8">
-      <div class="glass-card p-5 border-l-4 border-[#00F068]"><span class="font-black text-[#00F068]">Phase 1</span><br>Content+SEO+Ads<br>→ $500‑$3k/mo</div>
-      <div class="glass-card p-5"><span class="font-black text-[#00F068]">Phase 2</span><br>Affiliate scale + AI activation → $3k‑$15k/mo</div>
-      <div class="glass-card p-5"><span class="font-black text-[#00F068]">Phase 3</span><br>B2B lead gen + AI SaaS pilot → $10k‑$50k/mo</div>
-      <div class="glass-card p-5"><span class="font-black text-[#00F068]">Phase 4</span><br>Financial AI infrastructure (APIs) → $50k‑$200k+/mo</div>
+<!-- ─── AI ENGINE ──────────────────────────────────────────────── -->
+<section class="section ai-section" id="ai">
+  <div class="container">
+    <div class="ai-grid">
+      <!-- Left: feature list -->
+      <div>
+        <div class="section-header" style="margin-bottom:0">
+          <div class="badge-cyan badge">🤖 AI Engine</div>
+          <h2 style="margin-top:1rem">Not a table.<br/><span class="grad-cool">A decision.</span></h2>
+          <p>The AI doesn't just sort by price. It understands context, detects hidden costs, and recommends like a financial advisor — instantly.</p>
+        </div>
+        <div class="ai-cards">
+          <div class="ai-card">
+            <div class="ai-card-icon">🛣️</div>
+            <div>
+              <div class="ai-card-title">Best Route Optimizer</div>
+              <div class="ai-card-desc">Normalises fees, FX spreads and hidden costs into one "total received" figure across all providers.</div>
+              <div class="ai-card-ex">"Best option: Wise. $1,942 received in 2 hours — lowest total cost."</div>
+            </div>
+          </div>
+          <div class="ai-card">
+            <div class="ai-card-icon">🎯</div>
+            <div>
+              <div class="ai-card-title">Contextual Decision Engine</div>
+              <div class="ai-card-desc">Urgent? Prioritises speed. Saving? Minimises fees. Business? Checks compliance. Personalised, not static.</div>
+              <div class="ai-card-ex">"For your urgent B2B payment to Brazil, Airwallex has the fastest SWIFT rail today."</div>
+            </div>
+          </div>
+          <div class="ai-card">
+            <div class="ai-card-icon">📈</div>
+            <div>
+              <div class="ai-card-title">FX Timing Intelligence</div>
+              <div class="ai-card-desc">Tells you if today's rate is above or below the 30-day average — so you know when to act.</div>
+              <div class="ai-card-ex">"GBP→USD is 1.8% worse than 30-day avg. Rates typically improve within 48h."</div>
+            </div>
+          </div>
+          <div class="ai-card">
+            <div class="ai-card-icon">🔍</div>
+            <div>
+              <div class="ai-card-title">Hidden Fee Detector</div>
+              <div class="ai-card-desc">Exposes the real cost behind "£0 fee" offers — quantifying FX markup, intermediary charges and misleading promos.</div>
+              <div class="ai-card-ex">"Remitly shows £0 fee — but their FX rate costs you £18 more than Wise's total."</div>
+            </div>
+          </div>
+          <div class="ai-card">
+            <div class="ai-card-icon">💬</div>
+            <div>
+              <div class="ai-card-title">Conversational Assistant</div>
+              <div class="ai-card-desc">Natural language replaces forms. Type freely, get ranked options with one-tap execution.</div>
+              <div class="ai-card-ex">"Send €3,000 to Colombia for my family" → 3 ranked options, instant action.</div>
+            </div>
+          </div>
+          <div class="ai-card">
+            <div class="ai-card-icon">🏦</div>
+            <div>
+              <div class="ai-card-title">B2B Treasury Optimizer</div>
+              <div class="ai-card-desc">Optimises treasury flows, recommends split routing, predicts monthly FX cost and provider reliability.</div>
+              <div class="ai-card-ex">"Split $50K payroll: Wise for EU (cheaper), Payoneer for LATAM (faster)."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Right: live panel -->
+      <div>
+        <div class="ai-panel">
+          <div class="ai-panel-label">Live AI output · UK → Mexico</div>
+          <div class="route-row top">
+            <div class="route-left">
+              <div class="route-avatar" style="background:rgba(255,224,64,.15);color:var(--neon)">W</div>
+              <div>
+                <div class="route-name">Wise</div>
+                <div class="route-speed">⚡ 2 hours</div>
+              </div>
+            </div>
+            <div class="route-right">
+              <div class="route-amount">MXN $23,150</div>
+              <div class="pill">Best</div>
+            </div>
+          </div>
+          <div class="route-row">
+            <div class="route-left">
+              <div class="route-avatar" style="background:rgba(255,140,0,.15);color:var(--neon-hot)">R</div>
+              <div>
+                <div class="route-name">Remitly</div>
+                <div class="route-speed">🕐 1 day</div>
+              </div>
+            </div>
+            <div class="route-amount" style="color:var(--t-mid)">MXN $23,040</div>
+          </div>
+          <div class="route-row">
+            <div class="route-left">
+              <div class="route-avatar" style="background:rgba(170,255,71,.1);color:var(--neon-lime)">A</div>
+              <div>
+                <div class="route-name">Airwallex</div>
+                <div class="route-speed">🕐 2 days</div>
+              </div>
+            </div>
+            <div class="route-amount" style="color:var(--t-mid)">MXN $22,980</div>
+          </div>
+          <div class="route-row">
+            <div class="route-left">
+              <div class="route-avatar" style="background:rgba(0,245,212,.1);color:var(--neon-cyan)">O</div>
+              <div>
+                <div class="route-name">OFX</div>
+                <div class="route-speed">🕐 3 days</div>
+              </div>
+            </div>
+            <div class="route-amount" style="color:var(--t-mid)">MXN $22,910</div>
+          </div>
+          <div class="ai-insight-box">
+            ✦ <strong style="color:var(--neon-cyan)">AI Insight:</strong> Wise's FX spread is 0.3% below its 30-day average. Acting now saves ~£18 vs waiting. Rates historically worsen by end of week.
+          </div>
+
+          <!-- AI technical phases -->
+          <div style="margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--b-subtle)">
+            <div class="ai-panel-label">AI Technical Phases</div>
+            <div style="display:flex;flex-direction:column;gap:.625rem">
+              <div style="padding:.75rem 1rem;background:rgba(255,224,64,.06);border:1px solid rgba(255,224,64,.15);border-radius:.75rem">
+                <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;color:var(--neon);margin-bottom:.25rem">MVP — Weeks 1–4</div>
+                <div style="font-size:.75rem;color:var(--t-mid)">Rule-based scoring + LLM explanation layer. Open FX APIs. Cost: ~$50–200/mo.</div>
+              </div>
+              <div style="padding:.75rem 1rem;background:var(--bg-1);border:1px solid var(--b-subtle);border-radius:.75rem">
+                <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;color:var(--neon-hot);margin-bottom:.25rem">Phase 2 — Month 2–4</div>
+                <div style="font-size:.75rem;color:var(--t-mid)">Contextual ranking, FX timing signals, conversational UI via LLM.</div>
+              </div>
+              <div style="padding:.75rem 1rem;background:var(--bg-1);border:1px solid var(--b-subtle);border-radius:.75rem">
+                <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;color:var(--neon-lime);margin-bottom:.25rem">Phase 3 — Month 6–12</div>
+                <div style="font-size:.75rem;color:var(--t-mid)">Dynamic ML ranking, fee transparency detector, B2B split routing.</div>
+              </div>
+              <div style="padding:.75rem 1rem;background:var(--bg-1);border:1px solid var(--b-subtle);border-radius:.75rem">
+                <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;color:var(--neon-cyan);margin-bottom:.25rem">Phase 4 — Year 2+</div>
+                <div style="font-size:.75rem;color:var(--t-mid)">Full AI decision engine, predictive FX intelligence, auto-routing APIs.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Revenue Projections + Chart -->
-<section id="revenue" style="padding: 5rem 5%; background: radial-gradient(ellipse at 30% 80%, rgba(0,168,73,0.1), transparent);">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <span class="badge-green">📈 financial snapshot</span>
-    <h2 class="section-title">Revenue projections</h2>
-    <div class="glass-card overflow-x-auto p-1">
-      <table class="w-full text-left text-sm">
-        <thead class="border-b border-[#00F068]/30"><tr><th class="p-4">Period</th><th>Primary source</th><th>Monthly revenue</th><th>Cumulative</th></tr></thead>
+<!-- ─── TARGET MARKET ──────────────────────────────────────────── -->
+<section class="section market-section" id="market">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-lime badge">🎯 Segments</div>
+      <h2>Where Mango<br/>delivers value.</h2>
+      <p>From expats sending $200 home to corporate treasury managing $500M in FX exposure — one platform, multiple revenue streams.</p>
+    </div>
+    <div class="market-grid">
+      <div class="market-card">
+        <div class="market-icon">👤</div>
+        <div class="market-title">Retail & Expats</div>
+        <div class="market-desc">Individuals sending $200–$10K abroad. AI finds the cheapest route in under 10 seconds.</div>
+        <div class="market-model">Affiliate CPA</div>
+      </div>
+      <div class="market-card">
+        <div class="market-icon">💼</div>
+        <div class="market-title">SMEs & Freelancers</div>
+        <div class="market-desc">Import/export businesses and freelancers. Cut FX costs 1–3% via AI routing recommendations.</div>
+        <div class="market-model">Affiliate + Lead Gen</div>
+      </div>
+      <div class="market-card">
+        <div class="market-icon">🏦</div>
+        <div class="market-title">Fintechs & Neobanks</div>
+        <div class="market-desc">Wallets, payroll platforms, neobanks. White-label AI comparison engine or API integration.</div>
+        <div class="market-model">SaaS / API</div>
+      </div>
+      <div class="market-card">
+        <div class="market-icon">🏛️</div>
+        <div class="market-title">Banks & PSPs</div>
+        <div class="market-desc">Corporate FX desks and payment institutions seeking qualified institutional leads.</div>
+        <div class="market-model">Premium Lead Gen</div>
+      </div>
+      <div class="market-card">
+        <div class="market-icon">📊</div>
+        <div class="market-title">FX Brokers</div>
+        <div class="market-desc">Liquidity providers and FX brokers seeking targeted demand generation and premium placement.</div>
+        <div class="market-model">Rev Share / Ads</div>
+      </div>
+      <div class="market-card">
+        <div class="market-icon">🏢</div>
+        <div class="market-title">Enterprise Treasury</div>
+        <div class="market-desc">CFOs and finance teams managing large FX exposure. AI multi-provider benchmarking tool.</div>
+        <div class="market-model">SaaS + Consulting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── REVENUE PHASES ─────────────────────────────────────────── -->
+<section class="section" id="revenue" style="background:var(--bg)">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-orange badge">💰 Business Model</div>
+      <h2>Four phases.<br/>One platform.</h2>
+      <p>Content + comparison → Affiliate marketplace → B2B lead gen + AI SaaS → Global FX infrastructure.</p>
+    </div>
+    <div class="phases-grid">
+      <div class="phase phase-1" style="background:rgba(255,224,64,.03)">
+        <div class="phase-tag">Phase 1</div>
+        <div class="phase-title">Content + SEO + Ads</div>
+        <div class="phase-timeline">Days 1–90 · Launching now</div>
+        <ul class="phase-items">
+          <li>Google AdSense on all pages from Day 1</li>
+          <li>Google Ads campaigns — search + display</li>
+          <li>Affiliate: Wise, Remitly, OFX, Airwallex</li>
+          <li>30–50 SEO comparison pages</li>
+          <li>MVP AI route optimizer (rule-based)</li>
+        </ul>
+        <div class="phase-rev">$500 – $3K /mo</div>
+      </div>
+      <div class="phase phase-2" style="background:rgba(255,140,0,.03)">
+        <div class="phase-tag">Phase 2</div>
+        <div class="phase-title">Affiliate Scale + AI</div>
+        <div class="phase-timeline">Months 3–9 · Building</div>
+        <ul class="phase-items">
+          <li>CPA: $15–$1,000 per B2C/B2B referral</li>
+          <li>AI conversational assistant live (LLM)</li>
+          <li>FX rate alert email newsletter</li>
+          <li>LinkedIn B2B content funnel</li>
+          <li>Proprietary user data begins compounding</li>
+        </ul>
+        <div class="phase-rev">$3K – $15K /mo</div>
+      </div>
+      <div class="phase phase-3" style="background:rgba(170,255,71,.03)">
+        <div class="phase-tag">Phase 3</div>
+        <div class="phase-title">B2B Lead Gen + SaaS</div>
+        <div class="phase-timeline">Months 9–24 · Scaling</div>
+        <ul class="phase-items">
+          <li>Qualified B2B leads: $100–$1,000 each</li>
+          <li>White-label AI widget for fintechs</li>
+          <li>ML dynamic scoring engine</li>
+          <li>Sponsored listings + premium placements</li>
+          <li>First institutional data partnerships</li>
+        </ul>
+        <div class="phase-rev">$10K – $50K /mo</div>
+      </div>
+      <div class="phase phase-4" style="background:rgba(0,245,212,.03)">
+        <div class="phase-tag">Phase 4</div>
+        <div class="phase-title">FX AI Infrastructure</div>
+        <div class="phase-timeline">Year 2+ · The endgame</div>
+        <ul class="phase-items">
+          <li>FX AI APIs licensed to banks + fintechs</li>
+          <li>Embedded payments routing platform</li>
+          <li>Treasury intelligence SaaS subscriptions</li>
+          <li>Proprietary FX data product</li>
+          <li>Auto-routing with direct integrations</li>
+        </ul>
+        <div class="phase-rev">$50K – $200K+ /mo</div>
+      </div>
+    </div>
+
+    <!-- Revenue Projection Table -->
+    <div style="margin-top:4rem">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:.5rem">
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:-.02em">Revenue projections</h3>
+        <div class="badge" style="font-size:.68rem">📈 Financial Forecast</div>
+      </div>
+      <div class="table-wrap" style="overflow-x:auto">
+        <table class="rev-table">
+          <thead>
+            <tr>
+              <th>Period</th>
+              <th>Primary Revenue Source</th>
+              <th>Monthly Revenue</th>
+              <th>Cumulative</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="td-period">Month 1–2</td><td>AdSense + Google Ads traffic</td><td class="td-rev">$300 – $800</td><td>$0.6K – $1.6K</td></tr>
+            <tr><td class="td-period">Month 3</td><td>AdSense + first affiliate commissions</td><td class="td-rev">$800 – $2K</td><td>$1.4K – $3.6K</td></tr>
+            <tr><td class="td-period">Month 4–6</td><td>Affiliate scale (Wise, OFX, Airwallex)</td><td class="td-rev">$2K – $6K</td><td>$5K – $20K</td></tr>
+            <tr><td class="td-period">Month 7–12</td><td>Affiliate + B2B leads + AI SaaS pilot</td><td class="td-rev">$6K – $20K</td><td>$40K – $100K</td></tr>
+            <tr><td class="td-period">Month 13–18</td><td>B2B leads + sponsored + AI widget SaaS</td><td class="td-rev">$15K – $40K</td><td>$100K – $300K</td></tr>
+            <tr><td class="td-period">Month 19–24</td><td>SaaS + institutional data + leads</td><td class="td-rev">$30K – $80K</td><td>$300K – $600K</td></tr>
+            <tr><td class="td-period">Year 3+</td><td>AI API licensing + SaaS + institutional</td><td class="td-rev">$50K – $200K+</td><td>$1M – $5M+</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GTM ─────────────────────────────────────────────────────── -->
+<section class="section" id="gtm" style="background:var(--bg-1)">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge">📊 Go-To-Market</div>
+      <h2>Traffic first.<br/>Trust compounds.</h2>
+      <p>SEO as primary channel — high-intent, high-CPC fintech keywords. Google Ads for immediate revenue while organic builds.</p>
+    </div>
+    <div class="gtm-grid">
+      <!-- Keywords -->
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:1rem">High-intent SEO targets</div>
+        <div class="kw-list">
+          <div class="kw-row">
+            <div class="kw-term">"cheapest way to send money abroad"</div>
+            <div class="kw-vol">22K/mo</div>
+            <div class="kw-intent intent-high">High</div>
+            <div class="kw-cpc">$3.50</div>
+          </div>
+          <div class="kw-row">
+            <div class="kw-term">"Wise vs Remitly comparison"</div>
+            <div class="kw-vol">14K/mo</div>
+            <div class="kw-intent intent-high">High</div>
+            <div class="kw-cpc">$4.20</div>
+          </div>
+          <div class="kw-row">
+            <div class="kw-term">"best international money transfer"</div>
+            <div class="kw-vol">33K/mo</div>
+            <div class="kw-intent intent-high">High</div>
+            <div class="kw-cpc">$5.10</div>
+          </div>
+          <div class="kw-row">
+            <div class="kw-term">"best FX provider for SMEs"</div>
+            <div class="kw-vol">4.5K/mo</div>
+            <div class="kw-intent intent-vhigh">V.High</div>
+            <div class="kw-cpc">$7.80</div>
+          </div>
+          <div class="kw-row">
+            <div class="kw-term">"international business payments"</div>
+            <div class="kw-vol">8.2K/mo</div>
+            <div class="kw-intent intent-vhigh">V.High</div>
+            <div class="kw-cpc">$6.50</div>
+          </div>
+          <div class="kw-row">
+            <div class="kw-term">"FX broker comparison"</div>
+            <div class="kw-vol">6.1K/mo</div>
+            <div class="kw-intent intent-vhigh">V.High</div>
+            <div class="kw-cpc">$9.20</div>
+          </div>
+          <div class="kw-row">
+            <div class="kw-term">"FX rate forecast GBP USD"</div>
+            <div class="kw-vol">9.1K/mo</div>
+            <div class="kw-intent intent-high">High</div>
+            <div class="kw-cpc">$3.20</div>
+          </div>
+        </div>
+      </div>
+      <!-- Channels -->
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:1rem">Distribution channels</div>
+        <div class="channels">
+          <div class="channel">
+            <div class="channel-name">🔍 Google Ads (Immediate)</div>
+            <div class="channel-desc">Search + Display targeting high-intent FX keywords. Budget: $500–$2K/month. ROAS target: 1.5×–3× from month 2.</div>
+          </div>
+          <div class="channel">
+            <div class="channel-name">💼 LinkedIn B2B</div>
+            <div class="channel-desc">Organic + paid targeting CFOs, treasury managers, fintech founders. AI case studies as lead magnets.</div>
+          </div>
+          <div class="channel">
+            <div class="channel-name">📧 Email Newsletter</div>
+            <div class="channel-desc">Weekly AI FX digest — "Wise is 2% cheaper than Remitly this week." Monetised via sponsorships + affiliates.</div>
+          </div>
+          <div class="channel">
+            <div class="channel-name">🔗 Affiliate Network</div>
+            <div class="channel-desc">Co-marketing with Wise, Airwallex, Remitly, OFX. CPA: $15–$80 per B2C user, $200–$1,000 per B2B.</div>
+          </div>
+          <div class="channel">
+            <div class="channel-name">🧮 Product-Led Growth</div>
+            <div class="channel-desc">Free AI FX calculator as viral entry point. Embed on finance blogs. Share results → referral loop.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GOOGLE ADS LAUNCH ──────────────────────────────────────── -->
+<section class="section ads-section" id="ads">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-orange badge">🚀 Launch Plan</div>
+      <h2>Start billing.<br/>This week.</h2>
+      <p>Concrete actions to generate revenue before organic SEO and AI features are fully built. Week-by-week execution plan.</p>
+    </div>
+    <div class="ads-grid">
+      <div>
+        <div class="week-block">
+          <div class="week-label">Week 1 — Infrastructure</div>
+          <div class="week-item">Register domain: mango.finance</div>
+          <div class="week-item">Deploy site (Next.js or Webflow) — 5 pages: Home, B2C Compare, B2B, FX Calc, Blog</div>
+          <div class="week-item">Install Google Analytics 4 + Search Console + heatmap tool</div>
+          <div class="week-item">Apply for Google AdSense (1–3 day approval with quality content)</div>
+          <div class="week-item">Sign up: Wise Partners, Remitly, OFX Affiliate, Airwallex Partners</div>
+          <div class="week-item">Create Google Ads account, set billing, verify business</div>
+          <div class="week-item">Publish first 5 SEO comparison articles</div>
+        </div>
+        <div class="week-block" style="margin-top:1.5rem">
+          <div class="week-label">Week 3–4 — Optimise</div>
+          <div class="week-item">Analyse which ad groups drive affiliate clicks vs AdSense — scale winners</div>
+          <div class="week-item">A/B test landing page headlines and CTA buttons</div>
+          <div class="week-item">Launch MVP AI route optimizer as primary landing page hook</div>
+          <div class="week-item">Set conversion tracking: affiliate clicks, lead form fills, AI tool uses</div>
+          <div class="week-item">Target ROAS: $1.50–$3.00 return per $1 of ad spend by end of Month 1</div>
+        </div>
+        <div class="alert-box" style="margin-top:1.5rem">
+          <strong>Expected Month 1:</strong> $300–$800 from AdSense + affiliate combined.<br/>
+          <strong>Month 2:</strong> $1,500–$3,000 as Quality Score improves and AI tool drives engagement.
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:1rem">Week 2 — Campaigns Live</div>
+        <div class="ads-wrap" style="overflow-x:auto">
+          <table class="ads-table">
+            <thead>
+              <tr>
+                <th>Campaign</th>
+                <th>Budget/day</th>
+                <th>Goal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong style="color:var(--t-bright)">B2C Transfer</strong><br/><span style="color:var(--t-dim);font-size:.72rem">Search</span></td><td style="color:var(--neon-hot);font-family:'Syne',sans-serif;font-weight:700">$15–$30</td><td>Affiliate clicks</td></tr>
+              <tr><td><strong style="color:var(--t-bright)">FX Comparison</strong><br/><span style="color:var(--t-dim);font-size:.72rem">Search</span></td><td style="color:var(--neon-hot);font-family:'Syne',sans-serif;font-weight:700">$10–$20</td><td>AdSense + affiliate</td></tr>
+              <tr><td><strong style="color:var(--t-bright)">B2B Payments</strong><br/><span style="color:var(--t-dim);font-size:.72rem">Search</span></td><td style="color:var(--neon-hot);font-family:'Syne',sans-serif;font-weight:700">$20–$40</td><td>Lead form fills</td></tr>
+              <tr><td><strong style="color:var(--t-bright)">AI Tool Page</strong><br/><span style="color:var(--t-dim);font-size:.72rem">Search</span></td><td style="color:var(--neon-hot);font-family:'Syne',sans-serif;font-weight:700">$10–$20</td><td>AI signups</td></tr>
+              <tr><td><strong style="color:var(--t-bright)">Retargeting</strong><br/><span style="color:var(--t-dim);font-size:.72rem">Display</span></td><td style="color:var(--neon-hot);font-family:'Syne',sans-serif;font-weight:700">$5–$10</td><td>Return + convert</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COMPETITIVE ─────────────────────────────────────────────── -->
+<section class="section" style="background:var(--bg)">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-lime badge">🧠 Competitive Landscape</div>
+      <h2>No one owns<br/>this category yet.</h2>
+      <p>Mango is the only neutral, global platform combining B2C + B2B under one AI decision engine. As data compounds, the moat deepens.</p>
+    </div>
+    <div class="table-wrap" style="overflow-x:auto">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Competitor</th>
+            <th>Model</th>
+            <th>Weakness</th>
+            <th>Mango Advantage</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr class="border-b border-white/5"><td class="p-4">Months 1-2</td><td>AdSense + Ads traffic</td><td>$300 – $800</td><td>$0.6k‑$1.6k</td></tr>
-          <tr class="border-b border-white/5"><td class="p-4">Month 3</td><td>AdSense + first aff.</td><td>$800 – $2k</td><td>$1.4k‑$3.6k</td></tr>
-          <tr class="border-b border-white/5"><td class="p-4">Months 4-6</td><td>Affiliate scale</td><td>$2k – $6k</td><td>$5k‑$20k</td></tr>
-          <tr class="border-b border-white/5"><td class="p-4">Months 7-12</td><td>Affiliate + B2B leads</td><td>$6k – $20k</td><td>$40k‑$100k</td></tr>
-          <tr class="border-b border-white/5"><td class="p-4">Months 13-18</td><td>B2B leads + SaaS</td><td>$15k – $40k</td><td>$100k‑$300k</td></tr>
-          <tr><td class="p-4">Year 3+</td><td>AI API licensing</td><td>$50k – $200k+</td><td>$1M‑$5M+</td></tr>
+          <tr><td style="color:var(--t-bright);font-weight:600">MoneySupermarket FX</td><td>UK comparison</td><td>No B2B, no AI, no global scope</td><td class="td-mango">Global + AI + B2B stack</td></tr>
+          <tr><td style="color:var(--t-bright);font-weight:600">FXcompared</td><td>Comparison site</td><td>Outdated UX, weak SEO</td><td class="td-mango">Modern AI-powered UX</td></tr>
+          <tr><td style="color:var(--t-bright);font-weight:600">Wise / Remitly</td><td>Payment provider</td><td>They ARE the product</td><td class="td-mango">Neutral aggregator + AI layer</td></tr>
+          <tr><td style="color:var(--t-bright);font-weight:600">Bloomberg FX</td><td>Institutional data</td><td>Expensive, inaccessible</td><td class="td-mango">Accessible + freemium AI</td></tr>
+          <tr><td style="color:var(--t-bright);font-weight:600">Monito.com</td><td>B2C comparison</td><td>No B2B, no AI engine</td><td class="td-mango">Full B2C + B2B + AI stack</td></tr>
+          <tr><td style="color:var(--t-bright);font-weight:600">Google snippet</td><td>Quick rate box</td><td>No depth, no routing AI</td><td class="td-mango">Deep AI + affiliate action</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="grid md:grid-cols-2 gap-8 mt-10">
-      <div class="glass-card p-6"><i class="fa-regular fa-chart-line text-[#00F068] text-xl"></i><h3 class="font-bold mt-2">Media plan · Google Ads ready</h3><p>Search + Display with $500‑$2k/mo budget, target high‑intent FX keywords (ROAS 1.5x–3x)</p></div>
-      <div class="glass-card p-6"><i class="fa-regular fa-chart-line text-[#00F068] text-xl"></i><h3 class="font-bold mt-2">Immediate traffic</h3><p>Expected Month‑1: $300‑$800 (AdSense+affiliate) → Month‑2: $1.5k‑$3k with AI tool engagement</p></div>
+    <div class="alert-box" style="background:rgba(0,245,212,.06);border-color:rgba(0,245,212,.18);color:var(--neon-cyan);margin-top:1.5rem">
+      🛡️ <strong style="color:var(--neon-cyan)">Data moat:</strong> Every user interaction improves Mango's AI scoring — a defensible flywheel that competitors cannot replicate without the same usage history. Provider relationships + data + network effects = sustainable advantage.
     </div>
   </div>
 </section>
 
-<!-- 90-Day MVP Roadmap  -->
-<section id="roadmap" style="padding: 5rem 5%;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <span class="badge-green">🗓️ execution sprints</span>
-    <h2 class="section-title">90‑day MVP roadmap</h2>
-    <div class="grid md:grid-cols-3 gap-5 mt-6">
-      <div class="glass-card p-4"><span class="text-[#00F068] font-mono">Week 1</span><p class="font-semibold">Domain + site + AdSense & affiliates</p><span class="text-xs opacity-70">Enables revenue</span></div>
-      <div class="glass-card p-4"><span class="text-[#00F068] font-mono">Week 2</span><p class="font-semibold">Google Ads live (3 campaigns)</p><span class="text-xs opacity-70">Immediate traffic</span></div>
-      <div class="glass-card p-4"><span class="text-[#00F068] font-mono">Week 3-4</span><p class="font-semibold">MVP AI route optimizer (rule‑based+LLM)</p><span class="text-xs opacity-70">AI differentiation</span></div>
-      <div class="glass-card p-4"><span class="text-[#00F068] font-mono">Week 5-6</span><p class="font-semibold">B2B lead capture pages</p><span class="text-xs opacity-70">B2B pipeline</span></div>
-      <div class="glass-card p-4"><span class="text-[#00F068] font-mono">Week 7-8</span><p class="font-semibold">Email newsletter (AI FX digest)</p><span class="text-xs opacity-70">Retention + sponsors</span></div>
-      <div class="glass-card p-4"><span class="text-[#00F068] font-mono">Week 11-12</span><p class="font-semibold">First B2B partner deal signed</p><span class="text-xs opacity-70">B2B revenue opens</span></div>
+<!-- ─── RISKS ───────────────────────────────────────────────────── -->
+<section class="section" style="background:var(--bg-1)">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-orange badge">⚠️ Risks & Mitigations</div>
+      <h2>Known risks.<br/>Mitigated.</h2>
+      <p>Every risk identified, every mitigation mapped. No surprises.</p>
+    </div>
+    <div class="risks-grid">
+      <div class="risk-card">
+        <div class="risk-header"><div class="risk-title">SEO algorithm changes</div><div class="severity sev-med">Medium</div></div>
+        <div class="risk-mit">Diversify from Day 1: Google Ads + LinkedIn + email newsletter. SEO is primary but never the only channel.</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-header"><div class="risk-title">Regulatory (money custody)</div><div class="severity sev-low">Low – Phase 1</div></div>
+        <div class="risk-mit">No fund custody in Phase 1. Pure comparison layer. Legal review mandatory before Phase 4 API infrastructure.</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-header"><div class="risk-title">FX data accuracy</div><div class="severity sev-high">High</div></div>
+        <div class="risk-mit">Real-time FX APIs from day one. Clear "rates may vary" disclaimers on all comparison pages. No invented prices.</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-header"><div class="risk-title">AI hallucinating prices</div><div class="severity sev-high">High</div></div>
+        <div class="risk-mit">AI explains only — prices always sourced from live APIs, never generated. LLM output is text-only, not data.</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-header"><div class="risk-title">Trust gap (new brand)</div><div class="severity sev-med">Medium</div></div>
+        <div class="risk-mit">Editorial content, SSL, privacy policy, partner logos, and transparency pages from launch. Build credibility through content.</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-header"><div class="risk-title">Google Ads cost overrun</div><div class="severity sev-med">Medium</div></div>
+        <div class="risk-mit">Strict daily caps from day 1. Optimise Quality Score to reduce CPC. Monitor ROAS weekly and pause underperformers.</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-header"><div class="risk-title">AI API cost at scale</div><div class="severity sev-med">Medium</div></div>
+        <div class="risk-mit">Aggressive result caching. At Phase 3 volume, move to own fine-tuned model. Cost ~$50–200/mo at MVP scale.</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-header"><div class="risk-title">Competitive copycat</div><div class="severity sev-low">Low–Medium</div></div>
+        <div class="risk-mit">Data moat + provider contracts + B2B relationships create switching costs. Speed and execution are the real barriers.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Go to Market + Competitive Landscape (compact) -->
-<section style="padding: 4rem 5%;" class="border-t border-white/5">
-  <div style="max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between;">
-    <div class="flex-1 min-w-[260px]">
-      <span class="badge-green">📊 SEO-led GTM</span>
-      <h3 class="text-2xl font-bold mt-2">Primary channel: organic search</h3>
-      <ul class="mt-4 space-y-2 text-sm">
-        <li><i class="fa-regular fa-circle-check text-[#00F068]"></i> "cheapest way to send money abroad" – vol 22k</li>
-        <li><i class="fa-regular fa-circle-check text-[#00F068]"></i> "Wise vs Remitly" – 14k high intent</li>
-        <li><i class="fa-regular fa-circle-check text-[#00F068]"></i> "best FX provider for SMEs" – CPC $7.80</li>
-        <li><i class="fa-regular fa-circle-check text-[#00F068]"></i> LinkedIn B2B + affiliate co-marketing + viral FX calculator</li>
-      </ul>
+<!-- ─── 90-DAY ROADMAP ─────────────────────────────────────────── -->
+<section class="section roadmap-section" id="roadmap">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge">🏁 90-Day MVP Roadmap</div>
+      <h2>Week by week.<br/>Revenue by Month 1.</h2>
+      <p>Every week has a clear milestone and a direct revenue impact. No fluff.</p>
     </div>
-    <div class="flex-1 min-w-[260px]">
-      <span class="badge-green">⚡ competitive moat</span>
-      <h3 class="text-2xl font-bold mt-2">Mango vs. incumbents</h3>
-      <p class="mt-2 text-sm">Wise/Remitly: they ARE the product → Mango: neutral aggregator + AI.<br>Bloomberg FX: expensive → accessible freemium AI.<br>The only neutral global B2C+B2B AI decision layer.</p>
+    <div class="timeline">
+      <div class="tl-group">
+        <div class="tl-dot">1</div>
+        <div class="tl-week">Week 1 — Infrastructure</div>
+        <div class="tl-items">
+          <div class="tl-item"><span class="tl-item-text">Domain, hosting, 5-page site live</span><span class="tl-impact">Enables AdSense</span></div>
+          <div class="tl-item"><span class="tl-item-text">Apply for Google AdSense + 5 affiliate programmes</span><span class="tl-impact">Revenue unlock</span></div>
+          <div class="tl-item"><span class="tl-item-text">Google Ads account created, billing set, ads in review</span><span class="tl-impact">Traffic pipeline</span></div>
+        </div>
+      </div>
+      <div class="tl-group">
+        <div class="tl-dot">2</div>
+        <div class="tl-week">Week 2 — Campaigns Live</div>
+        <div class="tl-items">
+          <div class="tl-item"><span class="tl-item-text">Google Ads live — 3 campaigns ($15–$30/day total)</span><span class="tl-impact">Immediate traffic</span></div>
+          <div class="tl-item"><span class="tl-item-text">10 SEO comparison pages published</span><span class="tl-impact">Organic growth</span></div>
+          <div class="tl-item"><span class="tl-item-text">Affiliate links integrated across all pages</span><span class="tl-impact">Affiliate revenue</span></div>
+        </div>
+      </div>
+      <div class="tl-group">
+        <div class="tl-dot">3</div>
+        <div class="tl-week">Weeks 3–4 — AI Differentiation</div>
+        <div class="tl-items">
+          <div class="tl-item"><span class="tl-item-text">MVP AI route optimizer live (rule-based scoring + LLM explanation)</span><span class="tl-impact">AI edge</span></div>
+          <div class="tl-item"><span class="tl-item-text">FX calculator + AI comparison tool as primary lead magnet</span><span class="tl-impact">AdSense + leads</span></div>
+          <div class="tl-item"><span class="tl-item-text">A/B test landing page CTAs and ad group headlines</span><span class="tl-impact">ROAS improve</span></div>
+        </div>
+      </div>
+      <div class="tl-group">
+        <div class="tl-dot">4</div>
+        <div class="tl-week">Weeks 5–6 — B2B Pipeline</div>
+        <div class="tl-items">
+          <div class="tl-item"><span class="tl-item-text">B2B landing pages + lead capture forms live</span><span class="tl-impact">B2B pipeline</span></div>
+          <div class="tl-item"><span class="tl-item-text">LinkedIn B2B content campaign starts (2 posts/week)</span><span class="tl-impact">B2B leads</span></div>
+        </div>
+      </div>
+      <div class="tl-group">
+        <div class="tl-dot">5</div>
+        <div class="tl-week">Weeks 7–8 — Retention Layer</div>
+        <div class="tl-items">
+          <div class="tl-item"><span class="tl-item-text">Email newsletter launched — AI FX weekly digest</span><span class="tl-impact">Retention + sponsors</span></div>
+          <div class="tl-item"><span class="tl-item-text">30 SEO pages live; first organic rankings appearing</span><span class="tl-impact">SEO revenue</span></div>
+        </div>
+      </div>
+      <div class="tl-group">
+        <div class="tl-dot">6</div>
+        <div class="tl-week">Weeks 9–12 — Scale & B2B Revenue</div>
+        <div class="tl-items">
+          <div class="tl-item"><span class="tl-item-text">AI conversational assistant beta (LLM-powered)</span><span class="tl-impact">Engagement uplift</span></div>
+          <div class="tl-item"><span class="tl-item-text">Analytics deep-dive + Google Ads optimisation round 2</span><span class="tl-impact">ROAS improvement</span></div>
+          <div class="tl-item"><span class="tl-item-text">First B2B partner deal signed (pilot lead deal)</span><span class="tl-impact">B2B revenue opens</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Vision & Exit -->
-<footer style="padding: 4rem 5%; background: #02070A; border-top: 1px solid rgba(0,240,104,0.3);">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
-    <div><h5 class="font-bold text-lg">MANGO</h5><p class="text-xs opacity-60 mt-2">Global cross-border payments · AI financial decision engine</p></div>
-    <div><h6 class="font-semibold">AI Platform</h6><ul class="text-sm space-y-1 mt-2 opacity-70"><li>Best Route Optimizer</li><li>Contextual AI</li><li>FX Intelligence</li><li>Treasury optimiser</li></ul></div>
-    <div><h6 class="font-semibold">For Business</h6><ul class="text-sm space-y-1 mt-2 opacity-70"><li>SMEs & corporations</li><li>B2B lead & API</li><li>White‑label AI</li></ul></div>
-    <div><h6 class="font-semibold">Long term vision</h6><p class="text-sm opacity-70">Bloomberg for international payments — accessible to everybody. Exit scenarios: strategic acquisition (Wise/Stripe/Payoneer) or scaling to $10M+ ARR profitable bootstrap.</p></div>
+<!-- ─── VISION ─────────────────────────────────────────────────── -->
+<section class="section" id="vision" style="background:var(--bg)">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-cyan badge">🌟 Vision & Exit</div>
+      <h2>Content → Marketplace<br/>→ Infrastructure.</h2>
+      <p>Mango becomes the Bloomberg Terminal for international payments — accessible to everyone, from a $200 remittance to $500M in corporate FX exposure.</p>
+    </div>
+    <div class="vision-grid">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:1rem">Evolution roadmap</div>
+        <div class="table-wrap" style="overflow-x:auto">
+          <table class="evo-table">
+            <thead><tr><th>Phase</th><th>What Mango Is</th><th>AI Role</th><th>Moat</th></tr></thead>
+            <tbody>
+              <tr><td class="evo-phase">0–6 mo</td><td>Content + comparison</td><td>Rule-based optimizer</td><td>SEO + audience</td></tr>
+              <tr><td class="evo-phase">6–18 mo</td><td>Affiliate marketplace</td><td>LLM-powered assistant</td><td>Provider relationships</td></tr>
+              <tr><td class="evo-phase">18–36 mo</td><td>B2B intelligence SaaS</td><td>ML dynamic scoring</td><td>Data + contracts</td></tr>
+              <tr><td class="evo-phase">3–5 yr</td><td>Global FX infra layer</td><td>Full AI + auto-routing</td><td>API network effects</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:1rem">Exit & scale scenarios</div>
+        <div class="exits">
+          <div class="exit-card">
+            <div class="exit-title">🏆 Strategic Acquisition</div>
+            <div class="exit-desc">Wise, Stripe, or Payoneer acquiring a neutral AI comparison and distribution layer. Typical multiples: 5–15× ARR revenue. Target: ~$50M–$200M exit at Year 4.</div>
+          </div>
+          <div class="exit-card">
+            <div class="exit-title">📈 Series A Funding</div>
+            <div class="exit-desc">Once B2B SaaS + AI API revenue hits $500K ARR. Capital used to expand engineering and build proprietary data infrastructure. Expected: $5M–$15M raise.</div>
+          </div>
+          <div class="exit-card">
+            <div class="exit-title">💰 Profitable Bootstrap</div>
+            <div class="exit-desc">$10M+ ARR by Year 4 with a lean team of 5–10 people. AI keeps operational costs low. Highly defensible, cash-generative business with no external pressure.</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="text-center text-xs opacity-50 pt-12 border-t border-white/10 mt-8">© 2025 Mango · No fund custody, pure intelligence layer. AI decision engine patent‑pending strategy.</div>
+</section>
+
+<!-- ─── CTA ─────────────────────────────────────────────────────── -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <div class="badge" style="margin:0 auto 1.5rem;width:fit-content">Get started</div>
+    <h2 class="font-display">Stop leaving money<br/>on the table.</h2>
+    <p>Join the early access list. Compare smarter, transfer cheaper, and move money globally with AI — from day one.</p>
+    <button class="btn btn-neon" style="font-size:1rem;padding:1rem 2.5rem">Compare rates for free →</button>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">
+        <div class="logo-mark" style="width:28px;height:28px;border-radius:8px;font-size:.9rem">🥭</div>
+        Mango
+      </div>
+      <p class="footer-desc">Global AI financial decision engine for cross-border payments. Neutral, intelligent, and fast.</p>
+      <div style="margin-top:1.25rem;display:flex;gap:.625rem;flex-wrap:wrap">
+        <div class="badge" style="font-size:.62rem;padding:.2rem .65rem">No fund custody</div>
+        <div class="badge" style="font-size:.62rem;padding:.2rem .65rem">AI-powered</div>
+        <div class="badge-cyan badge" style="font-size:.62rem;padding:.2rem .65rem">200+ providers</div>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">AI Platform</div>
+      <div class="footer-links">
+        <a href="#">Best Route Optimizer</a>
+        <a href="#">Contextual AI Engine</a>
+        <a href="#">FX Timing Intelligence</a>
+        <a href="#">Hidden Fee Detector</a>
+        <a href="#">B2B Treasury Optimizer</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">For Business</div>
+      <div class="footer-links">
+        <a href="#">SMEs & Corporations</a>
+        <a href="#">B2B Lead Gen</a>
+        <a href="#">White-label AI</a>
+        <a href="#">API Access</a>
+        <a href="#">Affiliate Programme</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <div class="footer-links">
+        <a href="#">About Mango</a>
+        <a href="#">Blog</a>
+        <a href="#">Press</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Mango Finance · mango.finance · Zero fund custody. Pure intelligence.</div>
+    <div class="footer-legal">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
 </footer>
 
-<!-- tiny scroll interaction -->
+<script>
+// Show API btn on desktop
+if(window.innerWidth > 768){
+  document.getElementById('apiBtn').style.display = 'inline-flex';
+}
+// Stagger card animations on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+},{threshold:0.1});
+
+document.querySelectorAll('.step,.market-card,.phase,.risk-card,.ai-card,.tl-item,.exit-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  observer.observe(el);
+});
+</script>
 </body>
 </html>
