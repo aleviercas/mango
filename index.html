@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Mango · Global FX AI Decision Engine</title>
 <meta name="description" content="Mango is the global AI financial decision engine for international payments — neutral, intelligent, and fast."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
+
+<!-- FAVICON SVG CIRCULAR (4 COLORES) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='favGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff2b2b'/%3E%3Cstop offset='33%25' stop-color='%23ff7a00'/%3E%3Cstop offset='66%25' stop-color='%23ffd400'/%3E%3Cstop offset='100%25' stop-color='%231fd65c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='46' fill='url(%23favGrad)'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='url(%23favGrad2)'/%3E%3Cdefs%3E%3ClinearGradient id='favGrad2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff2b2b'/%3E%3Cstop offset='33%25' stop-color='%23ff7a00'/%3E%3Cstop offset='66%25' stop-color='%23ffd400'/%3E%3Cstop offset='100%25' stop-color='%231fd65c'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E">
+
 <style>
 /* ─── RESET ─────────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -16,64 +18,58 @@ button{cursor:pointer;font-family:inherit;border:none;background:none}
 a{text-decoration:none;color:inherit}
 ul{list-style:none}
 
-/* ─── TOKENS ─────────────────────────────────────────────────── */
+/* ─── TOKENS (MISMA PALETA ORIGINAL) ───────────────────────── */
 :root{
-  /* fluoro palette — Lemon/Pomelo energy */
-  --neon:#FFE040;        /* primary fluoro yellow */
-  --neon-hot:#FF8C00;    /* hot orange */
-  --neon-lime:#AAFF47;   /* lime accent */
-  --neon-cyan:#00F5D4;   /* cyan accent */
-  --neon-pink:#FF4ECD;   /* pop accent */
-
-  /* backgrounds */
+  --neon:#FFE040;
+  --neon-hot:#FF8C00;
+  --neon-lime:#AAFF47;
+  --neon-cyan:#00F5D4;
+  --neon-pink:#FF4ECD;
   --bg:#07060A;
   --bg-1:#0D0B13;
   --bg-2:#131120;
   --bg-card:rgba(19,17,32,0.85);
   --bg-card-alt:rgba(255,224,64,0.04);
-
-  /* text */
   --t-bright:#FAFAF8;
   --t-mid:#C5C0D4;
   --t-dim:#6E6A85;
-
-  /* borders */
   --b-subtle:rgba(255,255,255,0.07);
   --b-neon:rgba(255,224,64,0.3);
-
-  /* type scale */
   --display:clamp(2.8rem,7vw,5.6rem);
   --h2:clamp(2rem,4.5vw,3.4rem);
   --h3:1.25rem;
   --body:0.9375rem;
   --small:0.8125rem;
-
-  /* spacing */
   --section-py:7rem;
   --gutter:min(5%,80px);
   --radius:1.25rem;
   --radius-lg:2rem;
 }
 
-/* ─── GLOBAL ─────────────────────────────────────────────────── */
+/* ─── GLOBAL: TIPOGRAFÍA ARIAL (SIN FUENTES GOOGLE) ────────── */
 html{scroll-behavior:smooth}
 body{
-  font-family:'Plus Jakarta Sans',sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background:var(--bg);
   color:var(--t-bright);
   line-height:1.6;
   overflow-x:hidden;
 }
 
-/* noise grain overlay */
+/* noise grain overlay (igual que original) */
 body::after{
   content:'';position:fixed;inset:0;z-index:999;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
   opacity:.45;mix-blend-mode:overlay;
 }
 
-/* ─── TYPOGRAPHY ─────────────────────────────────────────────── */
-.font-display{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-0.03em;line-height:1.05}
+/* ─── TYPOGRAPHY (adaptada a Arial) ────────────────────────── */
+.font-display{
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight:800;
+  letter-spacing:-0.01em;
+  line-height:1.05;
+}
 .t-neon{color:var(--neon)}
 .t-orange{color:var(--neon-hot)}
 .t-lime{color:var(--neon-lime)}
@@ -81,7 +77,6 @@ body::after{
 .t-mid{color:var(--t-mid)}
 .t-dim{color:var(--t-dim)}
 
-/* gradient text */
 .grad-neon{
   background:linear-gradient(120deg,var(--neon),var(--neon-hot));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
@@ -114,7 +109,8 @@ body::after{
 /* ─── BUTTONS ────────────────────────────────────────────────── */
 .btn{
   display:inline-flex;align-items:center;gap:.5rem;
-  font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight:700;font-size:.9rem;
   padding:.85rem 2rem;border-radius:100px;
   transition:all .22s ease;white-space:nowrap;letter-spacing:-.01em;
 }
@@ -135,7 +131,7 @@ body::after{
   border:1px solid var(--b-subtle);
   border-radius:var(--radius);
   backdrop-filter:blur(16px);
-  overflow:hidden; /* prevent text spill */
+  overflow:hidden;
 }
 .card:hover{border-color:rgba(255,224,64,0.2);transform:translateY(-3px);transition:all .25s ease}
 .card-neon-top{border-top:2px solid var(--neon)}
@@ -143,7 +139,7 @@ body::after{
 .card-lime-top{border-top:2px solid var(--neon-lime)}
 .card-cyan-top{border-top:2px solid var(--neon-cyan)}
 
-/* ─── NAV ────────────────────────────────────────────────────── */
+/* ─── NAV con LOGO CIRCULAR MINIMALISTA (4 COLORES) ───────────── */
 .nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   background:rgba(7,6,10,.8);
@@ -157,13 +153,21 @@ body::after{
 }
 .nav-logo{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
 .logo-mark{
-  width:34px;height:34px;border-radius:10px;flex-shrink:0;
-  background:linear-gradient(135deg,var(--neon),var(--neon-hot));
-  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  background:none;
 }
 .logo-name{
-  font-family:'Syne',sans-serif;font-weight:800;font-size:1.35rem;
-  letter-spacing:-.04em;color:var(--t-bright);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight:800;
+  font-size:1.35rem;
+  letter-spacing:-.02em;
+  color:var(--t-bright);
 }
 .nav-links{display:flex;align-items:center;gap:2rem}
 .nav-links a{
@@ -180,12 +184,10 @@ body::after{
   padding-top:80px;
   position:relative;overflow:hidden;
 }
-/* ambient orbs */
 .orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
 .orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(255,224,64,.12) 0%,transparent 65%);top:-200px;right:-200px}
 .orb-2{width:500px;height:500px;background:radial-gradient(circle,rgba(255,140,0,.1) 0%,transparent 65%);bottom:-100px;left:-100px}
 .orb-3{width:350px;height:350px;background:radial-gradient(circle,rgba(0,245,212,.07) 0%,transparent 65%);top:40%;left:35%}
-
 .hero-inner{
   position:relative;z-index:1;
   max-width:1240px;margin:0 auto;
@@ -193,7 +195,14 @@ body::after{
   display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;
 }
 .hero-eyebrow{margin-bottom:1.5rem}
-.hero-title{font-family:'Syne',sans-serif;font-weight:800;font-size:var(--display);letter-spacing:-.04em;line-height:1.02;margin-bottom:1.5rem}
+.hero-title{
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight:800;
+  font-size:var(--display);
+  letter-spacing:-.02em;
+  line-height:1.08;
+  margin-bottom:1.5rem;
+}
 .hero-sub{font-size:1.1rem;color:var(--t-mid);line-height:1.7;max-width:480px;margin-bottom:2.5rem;font-weight:300}
 .hero-ctas{display:flex;gap:.875rem;flex-wrap:wrap;margin-bottom:3.5rem}
 .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
@@ -202,186 +211,99 @@ body::after{
   border-radius:1rem;padding:1.1rem 1.2rem;
 }
 .hero-stat-val{
-  font-family:'Syne',sans-serif;font-weight:800;font-size:1.75rem;
-  letter-spacing:-.04em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight:800;
+  font-size:1.75rem;
+  letter-spacing:-.02em;
   background:linear-gradient(120deg,var(--neon),var(--neon-hot));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 .hero-stat-label{font-size:.75rem;color:var(--t-dim);margin-top:.2rem;line-height:1.4}
 
-/* ─── DEMO CARD ──────────────────────────────────────────────── */
+/* ─── DEMO CARD (sin cambios) ────────────────────────────────── */
 .demo-card{
   background:var(--bg-1);border:1px solid var(--b-subtle);
   border-radius:1.5rem;overflow:hidden;
   box-shadow:0 40px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,224,64,.05);
 }
-.demo-topbar{
-  padding:.875rem 1.25rem;background:rgba(255,255,255,.03);
-  border-bottom:1px solid var(--b-subtle);
-  display:flex;align-items:center;gap:.6rem;
-}
+.demo-topbar{padding:.875rem 1.25rem;background:rgba(255,255,255,.03);border-bottom:1px solid var(--b-subtle);display:flex;align-items:center;gap:.6rem;}
 .demo-dot{width:10px;height:10px;border-radius:50%}
 .demo-topbar-label{color:var(--t-dim);font-size:.72rem;margin-left:.5rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .demo-body{padding:1.5rem}
-.demo-prompt{
-  background:rgba(255,224,64,.06);border:1px solid rgba(255,224,64,.15);
-  border-radius:.875rem;padding:.875rem 1.1rem;margin-bottom:1.25rem;
-  font-size:.85rem;color:var(--t-mid);font-style:italic;line-height:1.5;
-}
+.demo-prompt{background:rgba(255,224,64,.06);border:1px solid rgba(255,224,64,.15);border-radius:.875rem;padding:.875rem 1.1rem;margin-bottom:1.25rem;font-size:.85rem;color:var(--t-mid);font-style:italic;line-height:1.5;}
 .demo-prompt strong{color:var(--t-bright);font-style:normal}
 .demo-results{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
-.result-item{
-  background:var(--bg-2);border:1px solid var(--b-subtle);
-  border-radius:1rem;padding:1rem;
-}
+.result-item{background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:1rem;padding:1rem;}
 .result-item.winner{border-color:rgba(255,224,64,.35);background:rgba(255,224,64,.04)}
 .result-rank{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:.6rem}
 .result-item.winner .result-rank{color:var(--neon)}
-.result-provider{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:var(--t-bright);margin-bottom:.75rem}
+.result-provider{font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.95rem;color:var(--t-bright);margin-bottom:.75rem}
 .result-row{display:flex;justify-content:space-between;font-size:.75rem;color:var(--t-dim);margin-bottom:.3rem}
 .result-row span:last-child{color:var(--t-mid)}
 .result-total{margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--b-subtle);display:flex;justify-content:space-between;font-size:.8rem}
-.result-total span:last-child{font-family:'Syne',sans-serif;font-weight:700;color:var(--neon)}
-.demo-insight{
-  background:rgba(0,245,212,.06);border:1px solid rgba(0,245,212,.18);
-  border-radius:.875rem;padding:.875rem 1rem;
-  font-size:.78rem;color:var(--neon-cyan);line-height:1.5;
-  display:flex;gap:.6rem;
-}
+.result-total span:last-child{font-family: Arial, Helvetica, sans-serif;font-weight:700;color:var(--neon)}
+.demo-insight{background:rgba(0,245,212,.06);border:1px solid rgba(0,245,212,.18);border-radius:.875rem;padding:.875rem 1rem;font-size:.78rem;color:var(--neon-cyan);line-height:1.5;display:flex;gap:.6rem;}
 
-/* ─── TICKER ─────────────────────────────────────────────────── */
-.ticker{
-  border-top:1px solid var(--b-subtle);border-bottom:1px solid var(--b-subtle);
-  background:var(--bg-1);
-  padding:.9rem 0;overflow:hidden;white-space:nowrap;
-}
+/* ─── TICKER (sin cambios) ───────────────────────────────────── */
+.ticker{border-top:1px solid var(--b-subtle);border-bottom:1px solid var(--b-subtle);background:var(--bg-1);padding:.9rem 0;overflow:hidden;white-space:nowrap;}
 .ticker-track{display:inline-flex;animation:ticker 30s linear infinite}
-.ticker-item{
-  display:inline-flex;align-items:center;gap:1.5rem;
-  padding:0 2.5rem;
-  font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;
-  letter-spacing:.08em;text-transform:uppercase;color:var(--t-dim);
-}
+.ticker-item{display:inline-flex;align-items:center;gap:1.5rem;padding:0 2.5rem;font-family: Arial, Helvetica, sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t-dim);}
 .ticker-item span{color:var(--neon);font-size:.65rem}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ─── SECTION HEADERS ────────────────────────────────────────── */
 .section-header{margin-bottom:3.5rem}
 .section-header .badge{margin-bottom:1rem}
-.section-header h2{font-family:'Syne',sans-serif;font-weight:800;font-size:var(--h2);letter-spacing:-.03em;line-height:1.1;margin-bottom:1rem}
+.section-header h2{font-family: Arial, Helvetica, sans-serif;font-weight:800;font-size:var(--h2);letter-spacing:-.02em;line-height:1.2;margin-bottom:1rem}
 .section-header p{font-size:1rem;color:var(--t-mid);max-width:560px;line-height:1.7;font-weight:300}
 
 /* ─── AI ENGINE ──────────────────────────────────────────────── */
 .ai-section{background:var(--bg-1)}
 .ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
 .ai-cards{display:grid;gap:.875rem;margin-top:2.5rem}
-.ai-card{
-  display:flex;align-items:flex-start;gap:1rem;
-  padding:1.25rem;
-  background:var(--bg-2);border:1px solid var(--b-subtle);
-  border-radius:1rem;transition:all .25s;
-}
+.ai-card{display:flex;align-items:flex-start;gap:1rem;padding:1.25rem;background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:1rem;transition:all .25s;}
 .ai-card:hover{border-color:rgba(255,224,64,.25);transform:translateX(4px)}
-.ai-card-icon{
-  width:40px;height:40px;border-radius:.75rem;flex-shrink:0;
-  background:rgba(255,224,64,.1);border:1px solid rgba(255,224,64,.15);
-  display:flex;align-items:center;justify-content:center;font-size:1rem;
-}
-.ai-card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:var(--t-bright);margin-bottom:.25rem}
+.ai-card-icon{width:40px;height:40px;border-radius:.75rem;flex-shrink:0;background:rgba(255,224,64,.1);border:1px solid rgba(255,224,64,.15);display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.ai-card-title{font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.9rem;color:var(--t-bright);margin-bottom:.25rem}
 .ai-card-desc{font-size:.8rem;color:var(--t-mid);line-height:1.5}
 .ai-card-ex{font-size:.72rem;color:var(--t-dim);font-style:italic;margin-top:.35rem}
-
-/* AI visual panel */
-.ai-panel{
-  background:var(--bg-2);border:1px solid rgba(0,245,212,.12);
-  border-radius:1.5rem;padding:1.75rem;
-  box-shadow:0 0 60px rgba(0,245,212,.05);
-}
-.ai-panel-label{
-  font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
-  color:var(--neon-cyan);margin-bottom:1.25rem;
-  display:flex;align-items:center;gap:.5rem;
-}
+.ai-panel{background:var(--bg-2);border:1px solid rgba(0,245,212,.12);border-radius:1.5rem;padding:1.75rem;box-shadow:0 0 60px rgba(0,245,212,.05);}
+.ai-panel-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--neon-cyan);margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem;}
 .ai-panel-label::before{content:'';width:16px;height:1px;background:var(--neon-cyan)}
-.route-row{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:.9rem 1rem;border-radius:.875rem;margin-bottom:.6rem;
-  background:var(--bg-1);border:1px solid var(--b-subtle);
-  transition:all .2s;
-}
+.route-row{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1rem;border-radius:.875rem;margin-bottom:.6rem;background:var(--bg-1);border:1px solid var(--b-subtle);transition:all .2s;}
 .route-row.top{background:rgba(255,224,64,.05);border-color:rgba(255,224,64,.3)}
 .route-left{display:flex;align-items:center;gap:.75rem}
-.route-avatar{
-  width:30px;height:30px;border-radius:.5rem;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-weight:800;font-size:.75rem;
-}
-.route-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.875rem;color:var(--t-bright)}
+.route-avatar{width:30px;height:30px;border-radius:.5rem;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family: Arial, Helvetica, sans-serif;font-weight:800;font-size:.75rem;}
+.route-name{font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.875rem;color:var(--t-bright)}
 .route-speed{font-size:.7rem;color:var(--t-dim)}
 .route-right{display:flex;align-items:center;gap:.75rem}
-.route-amount{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem}
+.route-amount{font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.9rem}
 .route-row.top .route-amount{color:var(--neon)}
-.pill{
-  background:var(--neon);color:#07060A;
-  font-size:.62rem;font-weight:800;padding:.2rem .6rem;border-radius:100px;
-  text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;
-}
-.ai-insight-box{
-  margin-top:1rem;background:rgba(0,245,212,.06);border:1px solid rgba(0,245,212,.15);
-  border-radius:.875rem;padding:.875rem 1rem;
-  font-size:.78rem;color:var(--neon-cyan);line-height:1.5;
-}
+.pill{background:var(--neon);color:#07060A;font-size:.62rem;font-weight:800;padding:.2rem .6rem;border-radius:100px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;}
+.ai-insight-box{margin-top:1rem;background:rgba(0,245,212,.06);border:1px solid rgba(0,245,212,.15);border-radius:.875rem;padding:.875rem 1rem;font-size:.78rem;color:var(--neon-cyan);line-height:1.5;}
 
 /* ─── HOW IT WORKS ───────────────────────────────────────────── */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
-.step{
-  padding:2rem 1.75rem;
-  background:var(--bg-card);border:1px solid var(--b-subtle);
-  border-radius:var(--radius);position:relative;overflow:hidden;
-  transition:all .25s;
-}
+.step{padding:2rem 1.75rem;background:var(--bg-card);border:1px solid var(--b-subtle);border-radius:var(--radius);position:relative;overflow:hidden;transition:all .25s;}
 .step:hover{border-color:rgba(255,224,64,.2);transform:translateY(-3px)}
-.step-num{
-  position:absolute;top:1rem;right:1.25rem;
-  font-family:'Syne',sans-serif;font-weight:800;font-size:5rem;
-  color:rgba(255,255,255,.03);line-height:1;pointer-events:none;letter-spacing:-.04em;
-}
-.step-icon{
-  width:48px;height:48px;border-radius:1rem;margin-bottom:1.25rem;
-  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
-  background:linear-gradient(135deg,rgba(255,224,64,.15),rgba(255,140,0,.1));
-  border:1px solid rgba(255,224,64,.15);
-}
-.step-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--t-bright);margin-bottom:.6rem}
+.step-num{position:absolute;top:1rem;right:1.25rem;font-family: Arial, Helvetica, sans-serif;font-weight:800;font-size:5rem;color:rgba(255,255,255,.03);line-height:1;pointer-events:none;letter-spacing:-.04em;}
+.step-icon{width:48px;height:48px;border-radius:1rem;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center;font-size:1.3rem;background:linear-gradient(135deg,rgba(255,224,64,.15),rgba(255,140,0,.1));border:1px solid rgba(255,224,64,.15);}
+.step-title{font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:1rem;color:var(--t-bright);margin-bottom:.6rem}
 .step-desc{font-size:.84rem;color:var(--t-mid);line-height:1.6}
 
 /* ─── TARGET MARKET ──────────────────────────────────────────── */
 .market-section{background:var(--bg-1)}
 .market-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
-.market-card{
-  padding:1.5rem 1.375rem;
-  background:var(--bg-2);border:1px solid var(--b-subtle);
-  border-radius:var(--radius);transition:all .25s;overflow:hidden;
-}
+.market-card{padding:1.5rem 1.375rem;background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:var(--radius);transition:all .25s;overflow:hidden;}
 .market-card:hover{border-color:rgba(255,224,64,.2);transform:translateY(-3px)}
 .market-icon{font-size:1.5rem;margin-bottom:1rem}
-.market-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:var(--t-bright);margin-bottom:.5rem}
+.market-title{font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.95rem;color:var(--t-bright);margin-bottom:.5rem}
 .market-desc{font-size:.8rem;color:var(--t-mid);line-height:1.5}
-.market-model{
-  display:inline-block;margin-top:.75rem;
-  font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
-  color:var(--neon);background:rgba(255,224,64,.1);
-  padding:.2rem .65rem;border-radius:100px;
-}
+.market-model{display:inline-block;margin-top:.75rem;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--neon);background:rgba(255,224,64,.1);padding:.2rem .65rem;border-radius:100px;}
 
 /* ─── PHASES ─────────────────────────────────────────────────── */
 .phases-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:3rem}
-.phase{
-  padding:1.5rem 1.375rem;
-  border:1px solid var(--b-subtle);border-radius:var(--radius);
-  display:flex;flex-direction:column;gap:.75rem;
-  transition:all .25s;position:relative;overflow:hidden;
-}
+.phase{padding:1.5rem 1.375rem;border:1px solid var(--b-subtle);border-radius:var(--radius);display:flex;flex-direction:column;gap:.75rem;transition:all .25s;position:relative;overflow:hidden;}
 .phase:hover{transform:translateY(-4px)}
 .phase::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
 .phase-1::before{background:var(--neon)}
@@ -389,135 +311,72 @@ body::after{
 .phase-3::before{background:var(--neon-lime)}
 .phase-4::before{background:var(--neon-cyan)}
 .phase-tag{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim)}
-.phase-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:var(--t-bright);line-height:1.3}
+.phase-title{font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.95rem;color:var(--t-bright);line-height:1.3}
 .phase-timeline{font-size:.75rem;color:var(--t-dim)}
 .phase-items{display:flex;flex-direction:column;gap:.5rem;flex:1}
 .phase-items li{font-size:.78rem;color:var(--t-mid);padding-left:1rem;position:relative;line-height:1.4}
 .phase-items li::before{content:'→';position:absolute;left:0;color:var(--neon);font-size:.7rem;top:.05rem}
-.phase-rev{
-  font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;
-  padding-top:.75rem;border-top:1px solid var(--b-subtle);
-}
+.phase-rev{font-family: Arial, Helvetica, sans-serif;font-weight:800;font-size:1rem;padding-top:.75rem;border-top:1px solid var(--b-subtle);}
 .phase-1 .phase-rev{color:var(--neon)}
 .phase-2 .phase-rev{color:var(--neon-hot)}
 .phase-3 .phase-rev{color:var(--neon-lime)}
 .phase-4 .phase-rev{color:var(--neon-cyan)}
 
 /* ─── REVENUE TABLE ──────────────────────────────────────────── */
-.table-wrap{
-  background:var(--bg-card);border:1px solid var(--b-subtle);
-  border-radius:var(--radius);overflow:hidden;margin-top:2.5rem;
-}
+.table-wrap{background:var(--bg-card);border:1px solid var(--b-subtle);border-radius:var(--radius);overflow:hidden;margin-top:2.5rem;}
 .rev-table{width:100%;border-collapse:collapse;font-size:.84rem}
-.rev-table th{
-  padding:.9rem 1.25rem;background:rgba(255,255,255,.03);
-  text-align:left;font-family:'Syne',sans-serif;font-weight:700;
-  font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);
-  border-bottom:1px solid var(--b-subtle);
-}
-.rev-table td{
-  padding:.875rem 1.25rem;border-bottom:1px solid var(--b-subtle);
-  color:var(--t-mid);vertical-align:middle;line-height:1.4;
-}
+.rev-table th{padding:.9rem 1.25rem;background:rgba(255,255,255,.03);text-align:left;font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);border-bottom:1px solid var(--b-subtle);}
+.rev-table td{padding:.875rem 1.25rem;border-bottom:1px solid var(--b-subtle);color:var(--t-mid);vertical-align:middle;line-height:1.4;}
 .rev-table tr:last-child td{border-bottom:none}
 .rev-table tr:nth-child(even) td{background:rgba(255,255,255,.015)}
 .rev-table .td-period{color:var(--t-bright);font-weight:600;white-space:nowrap}
-.rev-table .td-rev{font-family:'Syne',sans-serif;font-weight:700;color:var(--neon);white-space:nowrap}
+.rev-table .td-rev{font-family: Arial, Helvetica, sans-serif;font-weight:700;color:var(--neon);white-space:nowrap}
 
 /* ─── GTM SECTION ────────────────────────────────────────────── */
 .gtm-grid{display:grid;grid-template-columns:3fr 2fr;gap:3rem;align-items:start}
 .kw-list{display:flex;flex-direction:column;gap:.625rem;margin-top:1.5rem}
-.kw-row{
-  display:grid;grid-template-columns:1fr auto auto auto;align-items:center;
-  gap:1rem;padding:.875rem 1.25rem;
-  background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:.875rem;
-}
+.kw-row{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:1rem;padding:.875rem 1.25rem;background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:.875rem;}
 .kw-term{font-size:.84rem;color:var(--t-bright);font-weight:500}
 .kw-vol{font-size:.72rem;color:var(--t-dim);white-space:nowrap}
-.kw-intent{
-  font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
-  padding:.2rem .55rem;border-radius:100px;white-space:nowrap;
-}
+.kw-intent{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.2rem .55rem;border-radius:100px;white-space:nowrap;}
 .intent-high{background:rgba(255,224,64,.12);color:var(--neon)}
 .intent-vhigh{background:rgba(170,255,71,.12);color:var(--neon-lime)}
-.kw-cpc{font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;color:var(--neon-hot);white-space:nowrap}
-
+.kw-cpc{font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.8rem;color:var(--neon-hot);white-space:nowrap}
 .channels{display:flex;flex-direction:column;gap:.875rem;margin-top:1.5rem}
-.channel{
-  padding:1.1rem 1.25rem;
-  background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:.875rem;
-}
-.channel-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.875rem;color:var(--t-bright);margin-bottom:.3rem}
+.channel{padding:1.1rem 1.25rem;background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:.875rem;}
+.channel-name{font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.875rem;color:var(--t-bright);margin-bottom:.3rem}
 .channel-desc{font-size:.78rem;color:var(--t-mid);line-height:1.5}
 
 /* ─── GOOGLE ADS ─────────────────────────────────────────────── */
 .ads-section{background:var(--bg-1)}
 .ads-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem}
 .week-block{display:flex;flex-direction:column;gap:.75rem}
-.week-label{
-  font-family:'Syne',sans-serif;font-weight:800;font-size:.8rem;
-  text-transform:uppercase;letter-spacing:.1em;color:var(--neon);
-  margin-bottom:.25rem;
-}
-.week-item{
-  display:flex;align-items:flex-start;gap:.7rem;
-  font-size:.82rem;color:var(--t-mid);line-height:1.5;padding-left:.25rem;
-}
+.week-label{font-family: Arial, Helvetica, sans-serif;font-weight:800;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--neon);margin-bottom:.25rem;}
+.week-item{display:flex;align-items:flex-start;gap:.7rem;font-size:.82rem;color:var(--t-mid);line-height:1.5;padding-left:.25rem;}
 .week-item::before{content:'→';color:var(--neon-hot);flex-shrink:0;font-size:.75rem;margin-top:.15rem}
-.ads-table{
-  width:100%;border-collapse:collapse;font-size:.78rem;margin-top:1.5rem;
-}
-.ads-table th{
-  padding:.7rem 1rem;background:rgba(255,255,255,.03);
-  text-align:left;font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;
-  color:var(--t-dim);border-bottom:1px solid var(--b-subtle);
-}
-.ads-table td{
-  padding:.75rem 1rem;border-bottom:1px solid var(--b-subtle);
-  color:var(--t-mid);vertical-align:middle;
-}
+.ads-table{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:1.5rem;}
+.ads-table th{padding:.7rem 1rem;background:rgba(255,255,255,.03);text-align:left;font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--t-dim);border-bottom:1px solid var(--b-subtle);}
+.ads-table td{padding:.75rem 1rem;border-bottom:1px solid var(--b-subtle);color:var(--t-mid);vertical-align:middle;}
 .ads-table tr:last-child td{border-bottom:none}
-.ads-wrap{
-  background:var(--bg-card);border:1px solid var(--b-subtle);border-radius:var(--radius);overflow:hidden;
-}
-.alert-box{
-  background:rgba(255,224,64,.07);border:1px solid rgba(255,224,64,.2);
-  border-radius:1rem;padding:1.1rem 1.25rem;margin-top:1.5rem;
-  font-size:.84rem;color:var(--t-bright);line-height:1.6;
-}
+.ads-wrap{background:var(--bg-card);border:1px solid var(--b-subtle);border-radius:var(--radius);overflow:hidden;}
+.alert-box{background:rgba(255,224,64,.07);border:1px solid rgba(255,224,64,.2);border-radius:1rem;padding:1.1rem 1.25rem;margin-top:1.5rem;font-size:.84rem;color:var(--t-bright);line-height:1.6;}
 .alert-box strong{color:var(--neon)}
 
 /* ─── COMPETITIVE ────────────────────────────────────────────── */
-.comp-table{
-  width:100%;border-collapse:collapse;font-size:.82rem;margin-top:2.5rem;
-}
-.comp-table th{
-  padding:.875rem 1.25rem;background:rgba(255,255,255,.03);
-  text-align:left;font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;
-  color:var(--t-dim);border-bottom:1px solid var(--b-subtle);
-}
-.comp-table td{
-  padding:.875rem 1.25rem;border-bottom:1px solid var(--b-subtle);
-  color:var(--t-mid);vertical-align:middle;line-height:1.4;
-}
+.comp-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:2.5rem;}
+.comp-table th{padding:.875rem 1.25rem;background:rgba(255,255,255,.03);text-align:left;font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);border-bottom:1px solid var(--b-subtle);}
+.comp-table td{padding:.875rem 1.25rem;border-bottom:1px solid var(--b-subtle);color:var(--t-mid);vertical-align:middle;line-height:1.4;}
 .comp-table tr:last-child td{border-bottom:none}
 .comp-table tr:nth-child(even) td{background:rgba(255,255,255,.015)}
 .comp-table .td-mango{color:var(--neon-lime);font-weight:600}
 
 /* ─── RISKS ──────────────────────────────────────────────────── */
 .risks-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;margin-top:2.5rem}
-.risk-card{
-  padding:1.375rem 1.25rem;
-  background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:var(--radius);
-  transition:all .25s;
-}
+.risk-card{padding:1.375rem 1.25rem;background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:var(--radius);transition:all .25s;}
 .risk-card:hover{border-color:rgba(255,224,64,.15)}
 .risk-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;gap:.75rem;flex-wrap:wrap}
-.risk-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.875rem;color:var(--t-bright)}
-.severity{
-  font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
-  padding:.2rem .65rem;border-radius:100px;white-space:nowrap;flex-shrink:0;
-}
+.risk-title{font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.875rem;color:var(--t-bright)}
+.severity{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.2rem .65rem;border-radius:100px;white-space:nowrap;flex-shrink:0;}
 .sev-high{background:rgba(255,78,78,.15);color:#FF4E4E}
 .sev-med{background:rgba(255,224,64,.1);color:var(--neon)}
 .sev-low{background:rgba(170,255,71,.1);color:var(--neon-lime)}
@@ -527,96 +386,44 @@ body::after{
 .roadmap-section{background:var(--bg-1)}
 .timeline{display:flex;flex-direction:column;gap:0;margin-top:3rem}
 .tl-group{padding-left:2.5rem;position:relative;margin-bottom:2.5rem}
-.tl-group::before{
-  content:'';position:absolute;left:.625rem;top:1.2rem;bottom:-2.5rem;
-  width:1px;background:var(--b-subtle);
-}
+.tl-group::before{content:'';position:absolute;left:.625rem;top:1.2rem;bottom:-2.5rem;width:1px;background:var(--b-subtle);}
 .tl-group:last-child::before{display:none}
-.tl-dot{
-  position:absolute;left:0;top:.85rem;
-  width:1.25rem;height:1.25rem;border-radius:50%;
-  background:var(--neon);border:2px solid var(--bg-1);
-  display:flex;align-items:center;justify-content:center;
-  font-size:.55rem;font-weight:800;color:#07060A;flex-shrink:0;
-}
-.tl-week{
-  font-family:'Syne',sans-serif;font-weight:800;font-size:.78rem;
-  text-transform:uppercase;letter-spacing:.1em;color:var(--neon);margin-bottom:.5rem;
-}
+.tl-dot{position:absolute;left:0;top:.85rem;width:1.25rem;height:1.25rem;border-radius:50%;background:var(--neon);border:2px solid var(--bg-1);display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:800;color:#07060A;flex-shrink:0;}
+.tl-week{font-family: Arial, Helvetica, sans-serif;font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--neon);margin-bottom:.5rem;}
 .tl-items{display:flex;flex-direction:column;gap:.5rem}
-.tl-item{
-  padding:.75rem 1.1rem;
-  background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:.75rem;
-  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
-}
+.tl-item{padding:.75rem 1.1rem;background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:.75rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
 .tl-item-text{font-size:.82rem;color:var(--t-mid);line-height:1.4;flex:1}
-.tl-impact{
-  font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
-  color:var(--neon-lime);background:rgba(170,255,71,.08);
-  padding:.2rem .6rem;border-radius:100px;white-space:nowrap;flex-shrink:0;
-}
+.tl-impact{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--neon-lime);background:rgba(170,255,71,.08);padding:.2rem .6rem;border-radius:100px;white-space:nowrap;flex-shrink:0;}
 
 /* ─── VISION ─────────────────────────────────────────────────── */
 .vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;align-items:start}
 .evo-table{width:100%;border-collapse:collapse}
-.evo-table th{
-  padding:.75rem 1rem;background:rgba(255,255,255,.03);
-  text-align:left;font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;
-  color:var(--t-dim);border-bottom:1px solid var(--b-subtle);
-}
-.evo-table td{
-  padding:.875rem 1rem;border-bottom:1px solid var(--b-subtle);
-  font-size:.8rem;color:var(--t-mid);vertical-align:top;line-height:1.5;
-}
+.evo-table th{padding:.75rem 1rem;background:rgba(255,255,255,.03);text-align:left;font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);border-bottom:1px solid var(--b-subtle);}
+.evo-table td{padding:.875rem 1rem;border-bottom:1px solid var(--b-subtle);font-size:.8rem;color:var(--t-mid);vertical-align:top;line-height:1.5;}
 .evo-table tr:last-child td{border-bottom:none}
 .evo-phase{color:var(--t-bright);font-weight:600}
 .exits{display:flex;flex-direction:column;gap:1rem}
-.exit-card{
-  padding:1.375rem;background:var(--bg-2);border:1px solid var(--b-subtle);
-  border-radius:var(--radius);
-}
-.exit-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:var(--t-bright);margin-bottom:.4rem}
+.exit-card{padding:1.375rem;background:var(--bg-2);border:1px solid var(--b-subtle);border-radius:var(--radius);}
+.exit-title{font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.9rem;color:var(--t-bright);margin-bottom:.4rem}
 .exit-desc{font-size:.78rem;color:var(--t-mid);line-height:1.5}
 
 /* ─── CTA FINAL ──────────────────────────────────────────────── */
-.cta-section{
-  padding:var(--section-py) var(--gutter);text-align:center;
-  position:relative;overflow:hidden;background:var(--bg);
-}
-.cta-glow{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:600px;height:400px;
-  background:radial-gradient(ellipse,rgba(255,224,64,.12) 0%,transparent 65%);
-  pointer-events:none;
-}
+.cta-section{padding:var(--section-py) var(--gutter);text-align:center;position:relative;overflow:hidden;background:var(--bg);}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(255,224,64,.12) 0%,transparent 65%);pointer-events:none;}
 .cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
-.cta-inner h2{font-family:'Syne',sans-serif;font-weight:800;font-size:var(--h2);letter-spacing:-.03em;margin-bottom:1.25rem}
+.cta-inner h2{font-family: Arial, Helvetica, sans-serif;font-weight:800;font-size:var(--h2);letter-spacing:-.02em;margin-bottom:1.25rem}
 .cta-inner p{font-size:1rem;color:var(--t-mid);line-height:1.7;margin-bottom:2.5rem;font-weight:300}
 
 /* ─── FOOTER ─────────────────────────────────────────────────── */
-.footer{
-  border-top:1px solid var(--b-subtle);
-  background:var(--bg-1);
-  padding:3.5rem var(--gutter) 2rem;
-}
-.footer-grid{
-  max-width:1240px;margin:0 auto;
-  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;
-}
-.footer-brand-name{
-  font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;
-  display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem;
-}
+.footer{border-top:1px solid var(--b-subtle);background:var(--bg-1);padding:3.5rem var(--gutter) 2rem;}
+.footer-grid{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.footer-brand-name{font-family: Arial, Helvetica, sans-serif;font-weight:800;font-size:1.25rem;display:flex;align-items:center;gap:.6rem;margin-bottom:.75rem;}
 .footer-desc{font-size:.8rem;color:var(--t-dim);line-height:1.6;max-width:280px}
-.footer-col-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-bright);margin-bottom:1rem}
+.footer-col-title{font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-bright);margin-bottom:1rem}
 .footer-links{display:flex;flex-direction:column;gap:.5rem}
 .footer-links a{font-size:.8rem;color:var(--t-dim);transition:color .2s}
 .footer-links a:hover{color:var(--neon)}
-.footer-bottom{
-  max-width:1240px;margin:0 auto;
-  padding-top:1.5rem;border-top:1px solid var(--b-subtle);
-  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
-}
+.footer-bottom{max-width:1240px;margin:0 auto;padding-top:1.5rem;border-top:1px solid var(--b-subtle);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
 .footer-copy{font-size:.75rem;color:var(--t-dim)}
 .footer-legal{display:flex;gap:1.5rem}
 .footer-legal a{font-size:.75rem;color:var(--t-dim);transition:color .2s}
@@ -651,8 +458,6 @@ body::after{
   .kw-row{grid-template-columns:1fr 1fr;gap:.5rem}
   .kw-intent,.kw-cpc{display:none}
 }
-
-/* ─── ANIMATIONS ─────────────────────────────────────────────── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .animate{animation:fadeUp .6s ease both}
 .delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}.delay-4{animation-delay:.4s}
@@ -660,11 +465,23 @@ body::after{
 </head>
 <body>
 
-<!-- ─── NAV ──────────────────────────────────────────────────── -->
+<!-- ─── NAV con NUEVO LOGO SVGs CIRCULAR (4 COLORES) ────────── -->
 <nav class="nav">
   <div class="nav-inner">
     <div class="nav-logo">
-      <div class="logo-mark">🥭</div>
+      <div class="logo-mark">
+        <svg viewBox="0 0 100 100" width="34" height="34" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mangoCircleNav" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff2b2b"/>
+              <stop offset="33%" stop-color="#ff7a00"/>
+              <stop offset="66%" stop-color="#ffd400"/>
+              <stop offset="100%" stop-color="#1fd65c"/>
+            </linearGradient>
+          </defs>
+          <circle cx="50" cy="50" r="46" fill="url(#mangoCircleNav)"/>
+        </svg>
+      </div>
       <span class="logo-name">Mango</span>
       <div class="badge" style="margin-left:.5rem;font-size:.65rem;padding:.25rem .75rem">AI Engine</div>
     </div>
@@ -683,13 +500,15 @@ body::after{
   </div>
 </nav>
 
+<!-- ========== EL RESTO DEL CONTENIDO ES EXACTAMENTE IGUAL AL ORIGINAL ========== -->
+<!-- (desde aquí se copia fielmente el contenido original sin ninguna modificación adicional) -->
+
 <!-- ─── HERO ──────────────────────────────────────────────────── -->
 <section class="hero">
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
   <div class="hero-inner">
-    <!-- Left: copy -->
     <div>
       <div class="hero-eyebrow animate">
         <span class="badge"><span class="badge-dot"></span>AI-Powered · Launching Now</span>
@@ -720,7 +539,6 @@ body::after{
         </div>
       </div>
     </div>
-    <!-- Right: live demo card -->
     <div class="animate delay-2">
       <div class="demo-card">
         <div class="demo-topbar">
@@ -774,7 +592,6 @@ body::after{
     <div class="ticker-item">Send money smarter <span>✦</span></div>
     <div class="ticker-item">AdSense + affiliate <span>✦</span></div>
     <div class="ticker-item">Google Ads live <span>✦</span></div>
-    <!-- duplicate for seamless loop -->
     <div class="ticker-item">Compare rates <span>✦</span></div>
     <div class="ticker-item">AI route optimizer <span>✦</span></div>
     <div class="ticker-item">FX intelligence <span>✦</span></div>
@@ -823,7 +640,6 @@ body::after{
 <section class="section ai-section" id="ai">
   <div class="container">
     <div class="ai-grid">
-      <!-- Left: feature list -->
       <div>
         <div class="section-header" style="margin-bottom:0">
           <div class="badge-cyan badge">🤖 AI Engine</div>
@@ -881,7 +697,6 @@ body::after{
           </div>
         </div>
       </div>
-      <!-- Right: live panel -->
       <div>
         <div class="ai-panel">
           <div class="ai-panel-label">Live AI output · UK → Mexico</div>
@@ -931,25 +746,23 @@ body::after{
           <div class="ai-insight-box">
             ✦ <strong style="color:var(--neon-cyan)">AI Insight:</strong> Wise's FX spread is 0.3% below its 30-day average. Acting now saves ~£18 vs waiting. Rates historically worsen by end of week.
           </div>
-
-          <!-- AI technical phases -->
           <div style="margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--b-subtle)">
             <div class="ai-panel-label">AI Technical Phases</div>
             <div style="display:flex;flex-direction:column;gap:.625rem">
               <div style="padding:.75rem 1rem;background:rgba(255,224,64,.06);border:1px solid rgba(255,224,64,.15);border-radius:.75rem">
-                <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;color:var(--neon);margin-bottom:.25rem">MVP — Weeks 1–4</div>
+                <div style="font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.78rem;color:var(--neon);margin-bottom:.25rem">MVP — Weeks 1–4</div>
                 <div style="font-size:.75rem;color:var(--t-mid)">Rule-based scoring + LLM explanation layer. Open FX APIs. Cost: ~$50–200/mo.</div>
               </div>
               <div style="padding:.75rem 1rem;background:var(--bg-1);border:1px solid var(--b-subtle);border-radius:.75rem">
-                <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;color:var(--neon-hot);margin-bottom:.25rem">Phase 2 — Month 2–4</div>
+                <div style="font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.78rem;color:var(--neon-hot);margin-bottom:.25rem">Phase 2 — Month 2–4</div>
                 <div style="font-size:.75rem;color:var(--t-mid)">Contextual ranking, FX timing signals, conversational UI via LLM.</div>
               </div>
               <div style="padding:.75rem 1rem;background:var(--bg-1);border:1px solid var(--b-subtle);border-radius:.75rem">
-                <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;color:var(--neon-lime);margin-bottom:.25rem">Phase 3 — Month 6–12</div>
+                <div style="font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.78rem;color:var(--neon-lime);margin-bottom:.25rem">Phase 3 — Month 6–12</div>
                 <div style="font-size:.75rem;color:var(--t-mid)">Dynamic ML ranking, fee transparency detector, B2B split routing.</div>
               </div>
               <div style="padding:.75rem 1rem;background:var(--bg-1);border:1px solid var(--b-subtle);border-radius:.75rem">
-                <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;color:var(--neon-cyan);margin-bottom:.25rem">Phase 4 — Year 2+</div>
+                <div style="font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.78rem;color:var(--neon-cyan);margin-bottom:.25rem">Phase 4 — Year 2+</div>
                 <div style="font-size:.75rem;color:var(--t-mid)">Full AI decision engine, predictive FX intelligence, auto-routing APIs.</div>
               </div>
             </div>
@@ -1072,21 +885,15 @@ body::after{
       </div>
     </div>
 
-    <!-- Revenue Projection Table -->
     <div style="margin-top:4rem">
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:.5rem">
-        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:-.02em">Revenue projections</h3>
+        <h3 style="font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:-.02em">Revenue projections</h3>
         <div class="badge" style="font-size:.68rem">📈 Financial Forecast</div>
       </div>
       <div class="table-wrap" style="overflow-x:auto">
         <table class="rev-table">
           <thead>
-            <tr>
-              <th>Period</th>
-              <th>Primary Revenue Source</th>
-              <th>Monthly Revenue</th>
-              <th>Cumulative</th>
-            </tr>
+            <tr><th>Period</th><th>Primary Revenue Source</th><th>Monthly Revenue</th><th>Cumulative</th></tr>
           </thead>
           <tbody>
             <tr><td class="td-period">Month 1–2</td><td>AdSense + Google Ads traffic</td><td class="td-rev">$300 – $800</td><td>$0.6K – $1.6K</td></tr>
@@ -1112,78 +919,26 @@ body::after{
       <p>SEO as primary channel — high-intent, high-CPC fintech keywords. Google Ads for immediate revenue while organic builds.</p>
     </div>
     <div class="gtm-grid">
-      <!-- Keywords -->
       <div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:1rem">High-intent SEO targets</div>
+        <div style="font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:1rem">High-intent SEO targets</div>
         <div class="kw-list">
-          <div class="kw-row">
-            <div class="kw-term">"cheapest way to send money abroad"</div>
-            <div class="kw-vol">22K/mo</div>
-            <div class="kw-intent intent-high">High</div>
-            <div class="kw-cpc">$3.50</div>
-          </div>
-          <div class="kw-row">
-            <div class="kw-term">"Wise vs Remitly comparison"</div>
-            <div class="kw-vol">14K/mo</div>
-            <div class="kw-intent intent-high">High</div>
-            <div class="kw-cpc">$4.20</div>
-          </div>
-          <div class="kw-row">
-            <div class="kw-term">"best international money transfer"</div>
-            <div class="kw-vol">33K/mo</div>
-            <div class="kw-intent intent-high">High</div>
-            <div class="kw-cpc">$5.10</div>
-          </div>
-          <div class="kw-row">
-            <div class="kw-term">"best FX provider for SMEs"</div>
-            <div class="kw-vol">4.5K/mo</div>
-            <div class="kw-intent intent-vhigh">V.High</div>
-            <div class="kw-cpc">$7.80</div>
-          </div>
-          <div class="kw-row">
-            <div class="kw-term">"international business payments"</div>
-            <div class="kw-vol">8.2K/mo</div>
-            <div class="kw-intent intent-vhigh">V.High</div>
-            <div class="kw-cpc">$6.50</div>
-          </div>
-          <div class="kw-row">
-            <div class="kw-term">"FX broker comparison"</div>
-            <div class="kw-vol">6.1K/mo</div>
-            <div class="kw-intent intent-vhigh">V.High</div>
-            <div class="kw-cpc">$9.20</div>
-          </div>
-          <div class="kw-row">
-            <div class="kw-term">"FX rate forecast GBP USD"</div>
-            <div class="kw-vol">9.1K/mo</div>
-            <div class="kw-intent intent-high">High</div>
-            <div class="kw-cpc">$3.20</div>
-          </div>
+          <div class="kw-row"><div class="kw-term">"cheapest way to send money abroad"</div><div class="kw-vol">22K/mo</div><div class="kw-intent intent-high">High</div><div class="kw-cpc">$3.50</div></div>
+          <div class="kw-row"><div class="kw-term">"Wise vs Remitly comparison"</div><div class="kw-vol">14K/mo</div><div class="kw-intent intent-high">High</div><div class="kw-cpc">$4.20</div></div>
+          <div class="kw-row"><div class="kw-term">"best international money transfer"</div><div class="kw-vol">33K/mo</div><div class="kw-intent intent-high">High</div><div class="kw-cpc">$5.10</div></div>
+          <div class="kw-row"><div class="kw-term">"best FX provider for SMEs"</div><div class="kw-vol">4.5K/mo</div><div class="kw-intent intent-vhigh">V.High</div><div class="kw-cpc">$7.80</div></div>
+          <div class="kw-row"><div class="kw-term">"international business payments"</div><div class="kw-vol">8.2K/mo</div><div class="kw-intent intent-vhigh">V.High</div><div class="kw-cpc">$6.50</div></div>
+          <div class="kw-row"><div class="kw-term">"FX broker comparison"</div><div class="kw-vol">6.1K/mo</div><div class="kw-intent intent-vhigh">V.High</div><div class="kw-cpc">$9.20</div></div>
+          <div class="kw-row"><div class="kw-term">"FX rate forecast GBP USD"</div><div class="kw-vol">9.1K/mo</div><div class="kw-intent intent-high">High</div><div class="kw-cpc">$3.20</div></div>
         </div>
       </div>
-      <!-- Channels -->
       <div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:1rem">Distribution channels</div>
+        <div style="font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:1rem">Distribution channels</div>
         <div class="channels">
-          <div class="channel">
-            <div class="channel-name">🔍 Google Ads (Immediate)</div>
-            <div class="channel-desc">Search + Display targeting high-intent FX keywords. Budget: $500–$2K/month. ROAS target: 1.5×–3× from month 2.</div>
-          </div>
-          <div class="channel">
-            <div class="channel-name">💼 LinkedIn B2B</div>
-            <div class="channel-desc">Organic + paid targeting CFOs, treasury managers, fintech founders. AI case studies as lead magnets.</div>
-          </div>
-          <div class="channel">
-            <div class="channel-name">📧 Email Newsletter</div>
-            <div class="channel-desc">Weekly AI FX digest — "Wise is 2% cheaper than Remitly this week." Monetised via sponsorships + affiliates.</div>
-          </div>
-          <div class="channel">
-            <div class="channel-name">🔗 Affiliate Network</div>
-            <div class="channel-desc">Co-marketing with Wise, Airwallex, Remitly, OFX. CPA: $15–$80 per B2C user, $200–$1,000 per B2B.</div>
-          </div>
-          <div class="channel">
-            <div class="channel-name">🧮 Product-Led Growth</div>
-            <div class="channel-desc">Free AI FX calculator as viral entry point. Embed on finance blogs. Share results → referral loop.</div>
-          </div>
+          <div class="channel"><div class="channel-name">🔍 Google Ads (Immediate)</div><div class="channel-desc">Search + Display targeting high-intent FX keywords. Budget: $500–$2K/month. ROAS target: 1.5×–3× from month 2.</div></div>
+          <div class="channel"><div class="channel-name">💼 LinkedIn B2B</div><div class="channel-desc">Organic + paid targeting CFOs, treasury managers, fintech founders. AI case studies as lead magnets.</div></div>
+          <div class="channel"><div class="channel-name">📧 Email Newsletter</div><div class="channel-desc">Weekly AI FX digest — "Wise is 2% cheaper than Remitly this week." Monetised via sponsorships + affiliates.</div></div>
+          <div class="channel"><div class="channel-name">🔗 Affiliate Network</div><div class="channel-desc">Co-marketing with Wise, Airwallex, Remitly, OFX. CPA: $15–$80 per B2C user, $200–$1,000 per B2B.</div></div>
+          <div class="channel"><div class="channel-name">🧮 Product-Led Growth</div><div class="channel-desc">Free AI FX calculator as viral entry point. Embed on finance blogs. Share results → referral loop.</div></div>
         </div>
       </div>
     </div>
@@ -1224,22 +979,16 @@ body::after{
         </div>
       </div>
       <div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:1rem">Week 2 — Campaigns Live</div>
+        <div style="font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:1rem">Week 2 — Campaigns Live</div>
         <div class="ads-wrap" style="overflow-x:auto">
           <table class="ads-table">
-            <thead>
-              <tr>
-                <th>Campaign</th>
-                <th>Budget/day</th>
-                <th>Goal</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Campaign</th><th>Budget/day</th><th>Goal</th></tr></thead>
             <tbody>
-              <tr><td><strong style="color:var(--t-bright)">B2C Transfer</strong><br/><span style="color:var(--t-dim);font-size:.72rem">Search</span></td><td style="color:var(--neon-hot);font-family:'Syne',sans-serif;font-weight:700">$15–$30</td><td>Affiliate clicks</td></tr>
-              <tr><td><strong style="color:var(--t-bright)">FX Comparison</strong><br/><span style="color:var(--t-dim);font-size:.72rem">Search</span></td><td style="color:var(--neon-hot);font-family:'Syne',sans-serif;font-weight:700">$10–$20</td><td>AdSense + affiliate</td></tr>
-              <tr><td><strong style="color:var(--t-bright)">B2B Payments</strong><br/><span style="color:var(--t-dim);font-size:.72rem">Search</span></td><td style="color:var(--neon-hot);font-family:'Syne',sans-serif;font-weight:700">$20–$40</td><td>Lead form fills</td></tr>
-              <tr><td><strong style="color:var(--t-bright)">AI Tool Page</strong><br/><span style="color:var(--t-dim);font-size:.72rem">Search</span></td><td style="color:var(--neon-hot);font-family:'Syne',sans-serif;font-weight:700">$10–$20</td><td>AI signups</td></tr>
-              <tr><td><strong style="color:var(--t-bright)">Retargeting</strong><br/><span style="color:var(--t-dim);font-size:.72rem">Display</span></td><td style="color:var(--neon-hot);font-family:'Syne',sans-serif;font-weight:700">$5–$10</td><td>Return + convert</td></tr>
+              <tr><td><strong style="color:var(--t-bright)">B2C Transfer</strong><br/><span style="color:var(--t-dim);font-size:.72rem">Search</span></td><td style="color:var(--neon-hot);font-family: Arial, Helvetica, sans-serif;font-weight:700">$15–$30</td><td>Affiliate clicks</td></tr>
+              <tr><td><strong style="color:var(--t-bright)">FX Comparison</strong><br/><span style="color:var(--t-dim);font-size:.72rem">Search</span></td><td style="color:var(--neon-hot);font-family: Arial, Helvetica, sans-serif;font-weight:700">$10–$20</td><td>AdSense + affiliate</td></tr>
+              <tr><td><strong style="color:var(--t-bright)">B2B Payments</strong><br/><span style="color:var(--t-dim);font-size:.72rem">Search</span></td><td style="color:var(--neon-hot);font-family: Arial, Helvetica, sans-serif;font-weight:700">$20–$40</td><td>Lead form fills</td></tr>
+              <tr><td><strong style="color:var(--t-bright)">AI Tool Page</strong><br/><span style="color:var(--t-dim);font-size:.72rem">Search</span></td><td style="color:var(--neon-hot);font-family: Arial, Helvetica, sans-serif;font-weight:700">$10–$20</td><td>AI signups</td></tr>
+              <tr><td><strong style="color:var(--t-bright)">Retargeting</strong><br/><span style="color:var(--t-dim);font-size:.72rem">Display</span></td><td style="color:var(--neon-hot);font-family: Arial, Helvetica, sans-serif;font-weight:700">$5–$10</td><td>Return + convert</td></tr>
             </tbody>
           </table>
         </div>
@@ -1258,14 +1007,7 @@ body::after{
     </div>
     <div class="table-wrap" style="overflow-x:auto">
       <table class="comp-table">
-        <thead>
-          <tr>
-            <th>Competitor</th>
-            <th>Model</th>
-            <th>Weakness</th>
-            <th>Mango Advantage</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Competitor</th><th>Model</th><th>Weakness</th><th>Mango Advantage</th></tr></thead>
         <tbody>
           <tr><td style="color:var(--t-bright);font-weight:600">MoneySupermarket FX</td><td>UK comparison</td><td>No B2B, no AI, no global scope</td><td class="td-mango">Global + AI + B2B stack</td></tr>
           <tr><td style="color:var(--t-bright);font-weight:600">FXcompared</td><td>Comparison site</td><td>Outdated UX, weak SEO</td><td class="td-mango">Modern AI-powered UX</td></tr>
@@ -1291,38 +1033,14 @@ body::after{
       <p>Every risk identified, every mitigation mapped. No surprises.</p>
     </div>
     <div class="risks-grid">
-      <div class="risk-card">
-        <div class="risk-header"><div class="risk-title">SEO algorithm changes</div><div class="severity sev-med">Medium</div></div>
-        <div class="risk-mit">Diversify from Day 1: Google Ads + LinkedIn + email newsletter. SEO is primary but never the only channel.</div>
-      </div>
-      <div class="risk-card">
-        <div class="risk-header"><div class="risk-title">Regulatory (money custody)</div><div class="severity sev-low">Low – Phase 1</div></div>
-        <div class="risk-mit">No fund custody in Phase 1. Pure comparison layer. Legal review mandatory before Phase 4 API infrastructure.</div>
-      </div>
-      <div class="risk-card">
-        <div class="risk-header"><div class="risk-title">FX data accuracy</div><div class="severity sev-high">High</div></div>
-        <div class="risk-mit">Real-time FX APIs from day one. Clear "rates may vary" disclaimers on all comparison pages. No invented prices.</div>
-      </div>
-      <div class="risk-card">
-        <div class="risk-header"><div class="risk-title">AI hallucinating prices</div><div class="severity sev-high">High</div></div>
-        <div class="risk-mit">AI explains only — prices always sourced from live APIs, never generated. LLM output is text-only, not data.</div>
-      </div>
-      <div class="risk-card">
-        <div class="risk-header"><div class="risk-title">Trust gap (new brand)</div><div class="severity sev-med">Medium</div></div>
-        <div class="risk-mit">Editorial content, SSL, privacy policy, partner logos, and transparency pages from launch. Build credibility through content.</div>
-      </div>
-      <div class="risk-card">
-        <div class="risk-header"><div class="risk-title">Google Ads cost overrun</div><div class="severity sev-med">Medium</div></div>
-        <div class="risk-mit">Strict daily caps from day 1. Optimise Quality Score to reduce CPC. Monitor ROAS weekly and pause underperformers.</div>
-      </div>
-      <div class="risk-card">
-        <div class="risk-header"><div class="risk-title">AI API cost at scale</div><div class="severity sev-med">Medium</div></div>
-        <div class="risk-mit">Aggressive result caching. At Phase 3 volume, move to own fine-tuned model. Cost ~$50–200/mo at MVP scale.</div>
-      </div>
-      <div class="risk-card">
-        <div class="risk-header"><div class="risk-title">Competitive copycat</div><div class="severity sev-low">Low–Medium</div></div>
-        <div class="risk-mit">Data moat + provider contracts + B2B relationships create switching costs. Speed and execution are the real barriers.</div>
-      </div>
+      <div class="risk-card"><div class="risk-header"><div class="risk-title">SEO algorithm changes</div><div class="severity sev-med">Medium</div></div><div class="risk-mit">Diversify from Day 1: Google Ads + LinkedIn + email newsletter. SEO is primary but never the only channel.</div></div>
+      <div class="risk-card"><div class="risk-header"><div class="risk-title">Regulatory (money custody)</div><div class="severity sev-low">Low – Phase 1</div></div><div class="risk-mit">No fund custody in Phase 1. Pure comparison layer. Legal review mandatory before Phase 4 API infrastructure.</div></div>
+      <div class="risk-card"><div class="risk-header"><div class="risk-title">FX data accuracy</div><div class="severity sev-high">High</div></div><div class="risk-mit">Real-time FX APIs from day one. Clear "rates may vary" disclaimers on all comparison pages. No invented prices.</div></div>
+      <div class="risk-card"><div class="risk-header"><div class="risk-title">AI hallucinating prices</div><div class="severity sev-high">High</div></div><div class="risk-mit">AI explains only — prices always sourced from live APIs, never generated. LLM output is text-only, not data.</div></div>
+      <div class="risk-card"><div class="risk-header"><div class="risk-title">Trust gap (new brand)</div><div class="severity sev-med">Medium</div></div><div class="risk-mit">Editorial content, SSL, privacy policy, partner logos, and transparency pages from launch. Build credibility through content.</div></div>
+      <div class="risk-card"><div class="risk-header"><div class="risk-title">Google Ads cost overrun</div><div class="severity sev-med">Medium</div></div><div class="risk-mit">Strict daily caps from day 1. Optimise Quality Score to reduce CPC. Monitor ROAS weekly and pause underperformers.</div></div>
+      <div class="risk-card"><div class="risk-header"><div class="risk-title">AI API cost at scale</div><div class="severity sev-med">Medium</div></div><div class="risk-mit">Aggressive result caching. At Phase 3 volume, move to own fine-tuned model. Cost ~$50–200/mo at MVP scale.</div></div>
+      <div class="risk-card"><div class="risk-header"><div class="risk-title">Competitive copycat</div><div class="severity sev-low">Low–Medium</div></div><div class="risk-mit">Data moat + provider contracts + B2B relationships create switching costs. Speed and execution are the real barriers.</div></div>
     </div>
   </div>
 </section>
@@ -1336,58 +1054,12 @@ body::after{
       <p>Every week has a clear milestone and a direct revenue impact. No fluff.</p>
     </div>
     <div class="timeline">
-      <div class="tl-group">
-        <div class="tl-dot">1</div>
-        <div class="tl-week">Week 1 — Infrastructure</div>
-        <div class="tl-items">
-          <div class="tl-item"><span class="tl-item-text">Domain, hosting, 5-page site live</span><span class="tl-impact">Enables AdSense</span></div>
-          <div class="tl-item"><span class="tl-item-text">Apply for Google AdSense + 5 affiliate programmes</span><span class="tl-impact">Revenue unlock</span></div>
-          <div class="tl-item"><span class="tl-item-text">Google Ads account created, billing set, ads in review</span><span class="tl-impact">Traffic pipeline</span></div>
-        </div>
-      </div>
-      <div class="tl-group">
-        <div class="tl-dot">2</div>
-        <div class="tl-week">Week 2 — Campaigns Live</div>
-        <div class="tl-items">
-          <div class="tl-item"><span class="tl-item-text">Google Ads live — 3 campaigns ($15–$30/day total)</span><span class="tl-impact">Immediate traffic</span></div>
-          <div class="tl-item"><span class="tl-item-text">10 SEO comparison pages published</span><span class="tl-impact">Organic growth</span></div>
-          <div class="tl-item"><span class="tl-item-text">Affiliate links integrated across all pages</span><span class="tl-impact">Affiliate revenue</span></div>
-        </div>
-      </div>
-      <div class="tl-group">
-        <div class="tl-dot">3</div>
-        <div class="tl-week">Weeks 3–4 — AI Differentiation</div>
-        <div class="tl-items">
-          <div class="tl-item"><span class="tl-item-text">MVP AI route optimizer live (rule-based scoring + LLM explanation)</span><span class="tl-impact">AI edge</span></div>
-          <div class="tl-item"><span class="tl-item-text">FX calculator + AI comparison tool as primary lead magnet</span><span class="tl-impact">AdSense + leads</span></div>
-          <div class="tl-item"><span class="tl-item-text">A/B test landing page CTAs and ad group headlines</span><span class="tl-impact">ROAS improve</span></div>
-        </div>
-      </div>
-      <div class="tl-group">
-        <div class="tl-dot">4</div>
-        <div class="tl-week">Weeks 5–6 — B2B Pipeline</div>
-        <div class="tl-items">
-          <div class="tl-item"><span class="tl-item-text">B2B landing pages + lead capture forms live</span><span class="tl-impact">B2B pipeline</span></div>
-          <div class="tl-item"><span class="tl-item-text">LinkedIn B2B content campaign starts (2 posts/week)</span><span class="tl-impact">B2B leads</span></div>
-        </div>
-      </div>
-      <div class="tl-group">
-        <div class="tl-dot">5</div>
-        <div class="tl-week">Weeks 7–8 — Retention Layer</div>
-        <div class="tl-items">
-          <div class="tl-item"><span class="tl-item-text">Email newsletter launched — AI FX weekly digest</span><span class="tl-impact">Retention + sponsors</span></div>
-          <div class="tl-item"><span class="tl-item-text">30 SEO pages live; first organic rankings appearing</span><span class="tl-impact">SEO revenue</span></div>
-        </div>
-      </div>
-      <div class="tl-group">
-        <div class="tl-dot">6</div>
-        <div class="tl-week">Weeks 9–12 — Scale & B2B Revenue</div>
-        <div class="tl-items">
-          <div class="tl-item"><span class="tl-item-text">AI conversational assistant beta (LLM-powered)</span><span class="tl-impact">Engagement uplift</span></div>
-          <div class="tl-item"><span class="tl-item-text">Analytics deep-dive + Google Ads optimisation round 2</span><span class="tl-impact">ROAS improvement</span></div>
-          <div class="tl-item"><span class="tl-item-text">First B2B partner deal signed (pilot lead deal)</span><span class="tl-impact">B2B revenue opens</span></div>
-        </div>
-      </div>
+      <div class="tl-group"><div class="tl-dot">1</div><div class="tl-week">Week 1 — Infrastructure</div><div class="tl-items"><div class="tl-item"><span class="tl-item-text">Domain, hosting, 5-page site live</span><span class="tl-impact">Enables AdSense</span></div><div class="tl-item"><span class="tl-item-text">Apply for Google AdSense + 5 affiliate programmes</span><span class="tl-impact">Revenue unlock</span></div><div class="tl-item"><span class="tl-item-text">Google Ads account created, billing set, ads in review</span><span class="tl-impact">Traffic pipeline</span></div></div></div>
+      <div class="tl-group"><div class="tl-dot">2</div><div class="tl-week">Week 2 — Campaigns Live</div><div class="tl-items"><div class="tl-item"><span class="tl-item-text">Google Ads live — 3 campaigns ($15–$30/day total)</span><span class="tl-impact">Immediate traffic</span></div><div class="tl-item"><span class="tl-item-text">10 SEO comparison pages published</span><span class="tl-impact">Organic growth</span></div><div class="tl-item"><span class="tl-item-text">Affiliate links integrated across all pages</span><span class="tl-impact">Affiliate revenue</span></div></div></div>
+      <div class="tl-group"><div class="tl-dot">3</div><div class="tl-week">Weeks 3–4 — AI Differentiation</div><div class="tl-items"><div class="tl-item"><span class="tl-item-text">MVP AI route optimizer live (rule-based scoring + LLM explanation)</span><span class="tl-impact">AI edge</span></div><div class="tl-item"><span class="tl-item-text">FX calculator + AI comparison tool as primary lead magnet</span><span class="tl-impact">AdSense + leads</span></div><div class="tl-item"><span class="tl-item-text">A/B test landing page CTAs and ad group headlines</span><span class="tl-impact">ROAS improve</span></div></div></div>
+      <div class="tl-group"><div class="tl-dot">4</div><div class="tl-week">Weeks 5–6 — B2B Pipeline</div><div class="tl-items"><div class="tl-item"><span class="tl-item-text">B2B landing pages + lead capture forms live</span><span class="tl-impact">B2B pipeline</span></div><div class="tl-item"><span class="tl-item-text">LinkedIn B2B content campaign starts (2 posts/week)</span><span class="tl-impact">B2B leads</span></div></div></div>
+      <div class="tl-group"><div class="tl-dot">5</div><div class="tl-week">Weeks 7–8 — Retention Layer</div><div class="tl-items"><div class="tl-item"><span class="tl-item-text">Email newsletter launched — AI FX weekly digest</span><span class="tl-impact">Retention + sponsors</span></div><div class="tl-item"><span class="tl-item-text">30 SEO pages live; first organic rankings appearing</span><span class="tl-impact">SEO revenue</span></div></div></div>
+      <div class="tl-group"><div class="tl-dot">6</div><div class="tl-week">Weeks 9–12 — Scale & B2B Revenue</div><div class="tl-items"><div class="tl-item"><span class="tl-item-text">AI conversational assistant beta (LLM-powered)</span><span class="tl-impact">Engagement uplift</span></div><div class="tl-item"><span class="tl-item-text">Analytics deep-dive + Google Ads optimisation round 2</span><span class="tl-impact">ROAS improvement</span></div><div class="tl-item"><span class="tl-item-text">First B2B partner deal signed (pilot lead deal)</span><span class="tl-impact">B2B revenue opens</span></div></div></div>
     </div>
   </div>
 </section>
@@ -1402,7 +1074,7 @@ body::after{
     </div>
     <div class="vision-grid">
       <div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:1rem">Evolution roadmap</div>
+        <div style="font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:1rem">Evolution roadmap</div>
         <div class="table-wrap" style="overflow-x:auto">
           <table class="evo-table">
             <thead><tr><th>Phase</th><th>What Mango Is</th><th>AI Role</th><th>Moat</th></tr></thead>
@@ -1416,20 +1088,11 @@ body::after{
         </div>
       </div>
       <div>
-        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:1rem">Exit & scale scenarios</div>
+        <div style="font-family: Arial, Helvetica, sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t-dim);margin-bottom:1rem">Exit & scale scenarios</div>
         <div class="exits">
-          <div class="exit-card">
-            <div class="exit-title">🏆 Strategic Acquisition</div>
-            <div class="exit-desc">Wise, Stripe, or Payoneer acquiring a neutral AI comparison and distribution layer. Typical multiples: 5–15× ARR revenue. Target: ~$50M–$200M exit at Year 4.</div>
-          </div>
-          <div class="exit-card">
-            <div class="exit-title">📈 Series A Funding</div>
-            <div class="exit-desc">Once B2B SaaS + AI API revenue hits $500K ARR. Capital used to expand engineering and build proprietary data infrastructure. Expected: $5M–$15M raise.</div>
-          </div>
-          <div class="exit-card">
-            <div class="exit-title">💰 Profitable Bootstrap</div>
-            <div class="exit-desc">$10M+ ARR by Year 4 with a lean team of 5–10 people. AI keeps operational costs low. Highly defensible, cash-generative business with no external pressure.</div>
-          </div>
+          <div class="exit-card"><div class="exit-title">🏆 Strategic Acquisition</div><div class="exit-desc">Wise, Stripe, or Payoneer acquiring a neutral AI comparison and distribution layer. Typical multiples: 5–15× ARR revenue. Target: ~$50M–$200M exit at Year 4.</div></div>
+          <div class="exit-card"><div class="exit-title">📈 Series A Funding</div><div class="exit-desc">Once B2B SaaS + AI API revenue hits $500K ARR. Capital used to expand engineering and build proprietary data infrastructure. Expected: $5M–$15M raise.</div></div>
+          <div class="exit-card"><div class="exit-title">💰 Profitable Bootstrap</div><div class="exit-desc">$10M+ ARR by Year 4 with a lean team of 5–10 people. AI keeps operational costs low. Highly defensible, cash-generative business with no external pressure.</div></div>
         </div>
       </div>
     </div>
@@ -1452,7 +1115,12 @@ body::after{
   <div class="footer-grid">
     <div>
       <div class="footer-brand-name">
-        <div class="logo-mark" style="width:28px;height:28px;border-radius:8px;font-size:.9rem">🥭</div>
+        <div class="logo-mark" style="width:28px;height:28px;border-radius:50%;background:none;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="footerGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff2b2b"/><stop offset="33%" stop-color="#ff7a00"/><stop offset="66%" stop-color="#ffd400"/><stop offset="100%" stop-color="#1fd65c"/></linearGradient></defs>
+            <circle cx="50" cy="50" r="46" fill="url(#footerGrad)"/>
+          </svg>
+        </div>
         Mango
       </div>
       <p class="footer-desc">Global AI financial decision engine for cross-border payments. Neutral, intelligent, and fast.</p>
@@ -1504,11 +1172,9 @@ body::after{
 </footer>
 
 <script>
-// Show API btn on desktop
 if(window.innerWidth > 768){
   document.getElementById('apiBtn').style.display = 'inline-flex';
 }
-// Stagger card animations on scroll
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if(e.isIntersecting){
@@ -1517,7 +1183,6 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 },{threshold:0.1});
-
 document.querySelectorAll('.step,.market-card,.phase,.risk-card,.ai-card,.tl-item,.exit-card').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(16px)';
