@@ -7,8 +7,12 @@
 <meta name="description" content="Mango is the global AI financial decision engine for international payments — neutral, intelligent, and fast."/>
 
 <!-- FAVICON SVG CIRCULAR (4 COLORES) -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='favGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff2b2b'/%3E%3Cstop offset='33%25' stop-color='%23ff7a00'/%3E%3Cstop offset='66%25' stop-color='%23ffd400'/%3E%3Cstop offset='100%25' stop-color='%231fd65c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='46' fill='url(%23favGrad)'/%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='url(%23favGrad2)'/%3E%3Cdefs%3E%3ClinearGradient id='favGrad2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff2b2b'/%3E%3Cstop offset='33%25' stop-color='%23ff7a00'/%3E%3Cstop offset='66%25' stop-color='%23ffd400'/%3E%3Cstop offset='100%25' stop-color='%231fd65c'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
 
 <style>
 /* ─── RESET ─────────────────────────────────────────────────── */
@@ -461,6 +465,17 @@ body::after{
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .animate{animation:fadeUp .6s ease both}
 .delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}.delay-4{animation-delay:.4s}
+
+/* Ajuste para el nuevo logo */
+.nav-logo img {
+  filter: drop-shadow(0 0 5px var(--neon)); /* Le da el brillo amarillo fluo */
+  transition: transform 0.3s ease;
+}
+
+.nav-logo:hover img {
+  transform: scale(1.1); /* Efecto visual al pasar el ratón */
+}
+
 </style>
 </head>
 <body>
@@ -468,23 +483,11 @@ body::after{
 <!-- ─── NAV con NUEVO LOGO SVGs CIRCULAR (4 COLORES) ────────── -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-logo">
-      <div class="logo-mark">
-        <svg viewBox="0 0 100 100" width="34" height="34" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="mangoCircleNav" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#ff2b2b"/>
-              <stop offset="33%" stop-color="#ff7a00"/>
-              <stop offset="66%" stop-color="#ffd400"/>
-              <stop offset="100%" stop-color="#1fd65c"/>
-            </linearGradient>
-          </defs>
-          <circle cx="50" cy="50" r="46" fill="url(#mangoCircleNav)"/>
-        </svg>
-      </div>
-      <span class="logo-name">Mango</span>
-      <div class="badge" style="margin-left:.5rem;font-size:.65rem;padding:.25rem .75rem">AI Engine</div>
-    </div>
+<div class="nav-logo">
+  <img src="mango-logo-fluo.svg" alt="Mango Logo" style="width: 32px; height: 32px; object-fit: contain; margin-right: 10px; filter: drop-shadow(0 0 5px var(--neon));">
+  <span class="logo-name">Mango</span>
+</div>
+
     <div class="nav-links">
       <a href="#ai">AI Engine</a>
       <a href="#market">Market</a>
@@ -1114,16 +1117,10 @@ body::after{
 <footer class="footer">
   <div class="footer-grid">
     <div>
-      <div class="footer-brand-name">
-        <div class="logo-mark" style="width:28px;height:28px;border-radius:50%;background:none;display:flex;align-items:center;justify-content:center;">
-          <svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
-            <defs><linearGradient id="footerGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff2b2b"/><stop offset="33%" stop-color="#ff7a00"/><stop offset="66%" stop-color="#ffd400"/><stop offset="100%" stop-color="#1fd65c"/></linearGradient></defs>
-            <circle cx="50" cy="50" r="46" fill="url(#footerGrad)"/>
-          </svg>
-        </div>
-        Mango
-      </div>
-      <p class="footer-desc">Global AI financial decision engine for cross-border payments. Neutral, intelligent, and fast.</p>
+<div class="footer-brand-name" style="display: flex; align-items: center; gap: 10px;">
+  <img src="mango-logo-fluo.svg" alt="Mango Logo" style="width: 28px; height: 28px; object-fit: contain; filter: drop-shadow(0 0 5px var(--neon));">
+  Mango
+</div>class="footer-desc">Global AI financial decision engine for cross-border payments. Neutral, intelligent, and fast.</p>
       <div style="margin-top:1.25rem;display:flex;gap:.625rem;flex-wrap:wrap">
         <div class="badge" style="font-size:.62rem;padding:.2rem .65rem">No fund custody</div>
         <div class="badge" style="font-size:.62rem;padding:.2rem .65rem">AI-powered</div>
